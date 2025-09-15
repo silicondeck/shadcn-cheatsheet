@@ -6,17 +6,15 @@
 
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import Link from "next/link"
-import { SocialLink } from "@/types"
 import {
   ExternalLink,
   Github,
   Menu,
-  MessageCircle,
   Moon,
   Sun,
-  Twitter,
+  X
 } from "lucide-react"
 import { useTheme } from "next-themes"
 
@@ -141,13 +139,12 @@ function GitHubStars({ repo = "silicondeck/shadcn-cheatsheet" }: { repo?: string
  * Main header navigation component
  */
 export function Header({
-  socialLinks,
   onThemeChange,
 }: {
-  socialLinks: SocialLink[]
   onThemeChange: (theme: "light" | "dark") => void
 }) {
   const { setTheme } = useTheme()
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleThemeChange = (newTheme: "light" | "dark") => {
     setTheme(newTheme)
@@ -202,18 +199,27 @@ export function Header({
           </div>
           {/* Mobile Navigation */}
           <div className="md:hidden">
-            <Sheet>
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" aria-label="Open menu">
                   <Menu className="size-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[280px] sm:w-[300px]">
-                <SheetHeader className="space-y-2 text-left">
-                  <SheetTitle className="flex items-center gap-2">
-                    <ShadcnLogo className="size-5" />
-                    <span className="font-semibold">Cheatsheet</span>
+              <SheetContent side="right" className="w-[280px] sm:w-[300px] [&>button]:hidden">
+                <SheetHeader className="space-y-2">
+                  <SheetTitle className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <ShadcnLogo className="size-5" />
+                      <span className="font-semibold">Cheatsheet</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <GitHubStars />
+                      <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="cursor-pointer h-8 w-8">
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </SheetTitle>
+
                 </SheetHeader>
                 <nav className="flex flex-col gap-1 mt-6">
                   {navigationItems.map((item) =>
@@ -239,10 +245,6 @@ export function Header({
                     )
                   )}
 
-                  {/* GitHub Stars in mobile menu */}
-                  <div className="px-3 py-2.5 mt-2">
-                    <GitHubStars />
-                  </div>
                 </nav>
               </SheetContent>
             </Sheet>
@@ -253,11 +255,23 @@ export function Header({
 
           {/* Social Links - Removed GitHub since we have GitHub stars */}
           <div className="hidden items-center gap-1 sm:flex">
-            {socialLinks
-              .filter((link) => link.platform !== "github")
-              .map((link) => (
-                <SocialLinkButton key={link.platform} {...link} />
-              ))}
+            {/* Twitter/X Link */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => window.open("https://x.com/shadcnstore", "_blank", "noopener,noreferrer")}
+              aria-label="Twitter"
+              className="h-9 w-9 cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 30 30"
+                className="h-4 w-4"
+                fill="currentColor"
+              >
+                <path d="M26.37,26l-8.795-12.822l0.015,0.012L25.52,4h-2.65l-6.46,7.48L11.28,4H4.33l8.211,11.971L12.54,15.97L3.88,26h2.65 l7.182-8.322L19.42,26H26.37z M10.23,6l12.34,18h-2.1L8.12,6H10.23z"></path>
+              </svg>
+            </Button>
           </div>
         </div>
       </div>
@@ -318,52 +332,3 @@ function ThemeToggle({
     </Button>
   )
 }
-
-/**
- * Social media link button
- */
-function SocialLinkButton({
-  url,
-  icon: Icon,
-  label,
-}: Omit<SocialLink, "platform">) {
-  const handleClick = () => {
-    window.open(url, "_blank", "noopener,noreferrer")
-  }
-
-  return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={handleClick}
-      aria-label={label}
-      className="h-9 w-9 cursor-pointer"
-    >
-      <Icon className="h-4 w-4" />
-    </Button>
-  )
-}
-
-/**
- * Default social links configuration
- */
-export const DEFAULT_SOCIAL_LINKS: SocialLink[] = [
-  {
-    platform: "github",
-    url: "https://github.com/silicondeck/shadcn-cheatsheet",
-    icon: Github,
-    label: "GitHub",
-  },
-  {
-    platform: "twitter",
-    url: "https://x.com/shadcnstore",
-    icon: Twitter,
-    label: "Twitter",
-  },
-  {
-    platform: "discord",
-    url: "https://discord.gg/XEQhPc9a6p",
-    icon: MessageCircle,
-    label: "Discord",
-  },
-]

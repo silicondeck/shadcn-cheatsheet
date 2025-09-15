@@ -289,7 +289,8 @@ function HomeContent() {
       }
 
       // Use replace to avoid adding to browser history for every component click
-      router.replace(url.toString())
+      // Disable scroll to prevent scrolling to top when opening component details
+      router.replace(url.toString(), { scroll: false })
     },
     [router]
   )
@@ -312,7 +313,7 @@ function HomeContent() {
       if (selectedCategory !== "all" && component.category !== selectedCategory) {
         setSelectedCategory("all")
       }
-      
+
       // Convert to ComponentData and preview
       const componentData = convertToComponentData(component)
       handlePreview(componentData)
@@ -335,8 +336,20 @@ function HomeContent() {
     if (navState) {
       setPreviewComponent(navState.component)
       setCurrentVariant(navState.variant)
+
+      // Update URL to reflect the new component/variant
+      const url = new URL(window.location.href)
+      url.searchParams.set('component', navState.component.id)
+      if (navState.variant) {
+        url.searchParams.set('variant', navState.variant.id)
+      } else {
+        url.searchParams.delete('variant')
+      }
+
+      // Update URL without scrolling to maintain user's position
+      router.replace(url.toString(), { scroll: false })
     }
-  }, [])
+  }, [router])
 
   // Handle preview panel close with URL cleanup
   const handlePreviewClose = useCallback(() => {
@@ -350,7 +363,8 @@ function HomeContent() {
     url.searchParams.delete('variant')
 
     // Use push instead of replace to allow back button navigation
-    router.push(url.toString())
+    // Disable scroll to prevent scrolling to top when closing preview
+    router.push(url.toString(), { scroll: false })
   }, [router])
 
   // Handle variant change within preview
@@ -359,9 +373,17 @@ function HomeContent() {
       setCurrentVariant(variant)
       if (previewComponent) {
         navigationManager.initializeNavigation(previewComponent, variant)
+
+        // Update URL to reflect the new variant selection
+        const url = new URL(window.location.href)
+        url.searchParams.set('component', previewComponent.id)
+        url.searchParams.set('variant', variant.id)
+
+        // Update URL without scrolling to maintain user's position
+        router.replace(url.toString(), { scroll: false })
       }
     },
-    [previewComponent]
+    [previewComponent, router]
   )
 
   return (

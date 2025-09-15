@@ -111,16 +111,15 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
       <Sheet open={isOpen} onOpenChange={onClose}>
         <SheetContent
           side="right"
-          className="w-[75%] max-w-none p-0 [&>button]:hidden gap-0 sm:w-[75%] sm:max-w-none h-screen flex flex-col"
+          className="w-[85%] max-w-none p-0 [&>button]:hidden gap-0 md:w-[75%] sm:max-w-none h-screen flex flex-col"
           style={{
-            width: "75%",
             maxWidth: "none",
             height: "100vh",
           }}
           onOpenAutoFocus={(e) => e.preventDefault()}
         >
           <SheetHeader className="p-4 border-b bg-muted/50 flex-shrink-0">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between flex-wrap gap-2">
               <div className="flex items-center gap-4">
                 {/* Title and category badge */}
                 <div className="flex items-center gap-3">
@@ -152,7 +151,7 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
               </div>
 
               {/* Right side actions */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 {/* Installation button */}
                 {component && (
                   <Tooltip>

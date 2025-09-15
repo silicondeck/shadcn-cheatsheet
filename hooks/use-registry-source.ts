@@ -7,6 +7,8 @@
 
 import { useEffect, useState } from "react"
 
+import { getApiUrl } from "@/lib/api-utils"
+
 export function useRegistrySourceCode(registryName?: string) {
   const [sourceCode, setSourceCode] = useState<string>("")
   const [loading, setLoading] = useState(false)
@@ -32,7 +34,7 @@ export function useRegistrySourceCode(registryName?: string) {
 
         // Source loading logs disabled for production
         // console.log(`Loading source code for: ${name}`)
-        const response = await fetch(`/api/registry/source?name=${name}`)
+        const response = await fetch(getApiUrl(`registry/source?name=${name}`))
 
         if (!response.ok) {
           // API errors disabled for production

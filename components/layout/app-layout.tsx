@@ -8,7 +8,6 @@
 "use client"
 
 import { AppLayoutProps } from "@/types"
-import { Github, Twitter } from "lucide-react"
 import { ThemeProvider } from "next-themes"
 import React from "react"
 
@@ -26,20 +25,6 @@ export function AppLayout({ children }: AppLayoutProps) {
 
 
   const headerProps = {
-    socialLinks: [
-      {
-        platform: "github" as const,
-        url: "https://github.com/silicondeck/shadcn-cheatsheet",
-        icon: Github,
-        label: "GitHub Repository",
-      },
-      {
-        platform: "twitter" as const,
-        url: "https://x.com/shadcnstore",
-        icon: Twitter,
-        label: "Follow on Twitter",
-      },
-    ],
     onThemeChange: () => {}, // Theme is handled by next-themes provider
   }
 

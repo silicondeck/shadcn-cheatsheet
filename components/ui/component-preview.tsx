@@ -125,7 +125,7 @@ export const ComponentPreview: React.FC<ComponentPreviewProps> = ({
                 <h4 className="text-sm font-medium">Live Preview</h4>
               </div>
             </div>
-            <div className="p-4 flex-1 min-h-[300px] overflow-visible">
+            <div className="p-4 flex-1 lg:min-h-[300px] overflow-auto lg:overflow-visible">
               <LiveComponentPreview
                 key={displayVariant?._registryFile || component.id}
                 componentId={component.id}
