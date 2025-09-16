@@ -1,6 +1,6 @@
 {
   "name": "shadcn-cheatsheet",
-  "version": "0.1.0",
+  "version": "1.0",
   "private": true,
   "description": "Interactive cheatsheet for shadcn/ui components with live previews and examples",
   "homepage": "https://shadcnstore.com/cheatsheet",
