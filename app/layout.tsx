@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://shadcnstore.com/cheatsheet"),
   title: "Shadcn UI Cheatsheet - Complete Component Guide & Examples (2024)",
   description:
-    "Interactive Shadcn/UI cheatsheet with 46+ components, live previews, copy-paste code examples, and props tables. Built with Next.js, Tailwind CSS, and TypeScript.",
+    "Interactive Shadcn/UI cheatsheet with 45 components, live previews, copy-paste code examples, and props tables. Built with Next.js, Tailwind CSS, and TypeScript.",
   keywords: [
     "shadcn ui cheatsheet",
     "shadcn components",

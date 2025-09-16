@@ -1,20 +1,20 @@
-# 📋 shadcn/ui Cheat Sheet
+# 📋 shadcn/ui Cheatsheet
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![GitHub Stars](https://img.shields.io/github/stars/silicondeck/shadcn-cheatsheet?style=social)](https://github.com/silicondeck/shadcn-cheatsheet)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-15.5.2-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15.5.2-000000?logo=next.js&logoColor=white)](https://nextjs.org/)```
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-Latest-000000)](https://ui.shadcn.com/)
 
-> **Interactive cheat sheet for shadcn/ui components with live previews, copy-paste ready code examples, and comprehensive documentation for 46+ components.**
+> **Interactive Cheatsheet for shadcn/ui components with live previews, copy-paste ready code examples, and comprehensive documentation for 45 components.**
 
 🚀 **Free & Open Source** by [**ShadcnStore**](https://shadcnstore.com) - Your gateway to premium UI components, dashboards, and templates.
 
 <div align="center">
 
-🎯 <a href="https://shadcnstore.com/cheatsheet" target="_blank">**View Live Demo**</a> | 🧩 <a href="https://shadcnstore.com/blocks" target="_blank">**Explore Premium Blocks**</a> | 🖥️ <a href="https://shadcnstore.com/templates/dashboard" target="_blank">**Get Dashboard Template**</a>
+🎯 <a href="https://shadcnstore.com/cheatsheet" target="_blank">**View Live Demo**</a> | 🧩 <a href="https://shadcnstore.com/blocks" target="_blank">**Explore Premium Blocks**</a> | 🖥️ <a href="https://shadcnstore.com/templates/dashboard/shadcn-dashboard-landing-template/dashboard" target="_blank">**Get Dashboard Template**</a>
 
 </div>
 
@@ -22,17 +22,17 @@
 
 ## ✨ What's This?
 
-The **shadcn/ui Cheat Sheet** is the most comprehensive, interactive reference guide for shadcn/ui components available. Built by developers, for developers, it provides instant access to live component previews, copy-paste ready code snippets, and complete documentation for every shadcn/ui component.
+The **shadcn/ui Cheatsheet** is the most comprehensive, interactive reference guide for shadcn/ui components available. Built by developers, for developers, it provides instant access to live component previews, copy-paste ready code snippets, and complete documentation for every shadcn/ui component.
 
-Whether you're just getting started with shadcn/ui or you're a seasoned developer looking for quick reference, this cheat sheet accelerates your development workflow and helps you build beautiful, accessible interfaces faster.
+Whether you're just getting started with shadcn/ui or you're a seasoned developer looking for quick reference, this Cheatsheet accelerates your development workflow and helps you build beautiful, accessible interfaces faster.
 
 ---
 
 ## � Live Demo
 
-Experience the cheat sheet in action:
+Experience the Cheatsheet in action:
 
-- **[🔗 Interactive Cheat Sheet](https://shadcnstore.com/cheatsheet)** - Complete component reference with live previews
+- **[🔗 Interactive Cheatsheet](https://shadcnstore.com/cheatsheet)** - Complete component reference with live previews
 
 > **Note**: Every component includes live previews, usage examples, installation commands, and copy-paste ready code snippets.
 
@@ -41,7 +41,7 @@ Experience the cheat sheet in action:
 ## ✨ Key Features
 
 ### 🔥 **Complete Component Library**
-- **46+ Components** - Every shadcn/ui component covered
+- **45 Components** - Every shadcn/ui component covered
 - **Live Previews** - Interactive component demonstrations
 - **Multiple Variants** - All component variations and examples
 - **Real-time Updates** - Always up-to-date with latest shadcn/ui releases
@@ -116,11 +116,10 @@ pnpm start
 - ✅ **Sheet** - Side panels and drawers
 - ✅ **Table** - Advanced data tables
 - ✅ **Card** - Content cards with headers and footers
-- ✅ **Form** - Complete form handling with validation
 - ✅ **Navigation Menu** - Complex navigation with dropdowns
 - ✅ **Calendar** - Date picker calendars
 - ✅ **Accordion** - Collapsible content sections
-- ✅ **Toast** - Notification toasts
+- ✅ **Sonner Toast** - Notification toasts
 
 *And 34+ more components covering all shadcn/ui functionality!*
 
@@ -213,21 +212,11 @@ Each component card displays:
 Switch between package managers using the tab interface:
 
 ```bash
-# npm
-npm install @radix-ui/react-accordion
-
-# yarn  
-yarn add @radix-ui/react-accordion
-
-# pnpm
-pnpm add @radix-ui/react-accordion
-
-# bun
-bun add @radix-ui/react-accordion
+# npm, # yarn, # pnpm, # bun
 ```
 
 ### **Search & Navigation**
-- **Global Search** - Press `Ctrl+K` to open command palette
+- **Global Search** - Press `Ctrl+K` or `CMD+k` to open command palette
 - **Category Filters** - Click category badges to filter components
 - **Component Preview** - Click any component for live preview
 - **Keyboard Navigation** - Use arrow keys in preview mode
@@ -235,7 +224,7 @@ bun add @radix-ui/react-accordion
 
 ---
 
-## 🌟 Why Use This Cheat Sheet?
+## 🌟 Why Use This Cheatsheet?
 
 ### **🚀 Speed Up Development**
 - **Instant Reference** - No more digging through documentation
@@ -259,11 +248,11 @@ bun add @radix-ui/react-accordion
 
 ## 🚀 Take It Further with ShadcnStore
 
-This free cheat sheet is part of the **ShadcnStore** ecosystem! Discover more resources to accelerate your development:
+This free Cheatsheet is part of the **ShadcnStore** ecosystem! Discover more resources to accelerate your development:
 
 ### **🎁 Available Now**
 
-#### **🖥️ [Premium Dashboard Template](https://shadcnstore.com/templates/dashboard)**
+#### **🖥️ [Opensource Dashboard Template](https://shadcnstore.com/templates/dashboard/shadcn-dashboard-landing-template/dashboard)**
 Complete admin dashboard with 30+ pages, built with shadcn/ui:
 - **2 Dashboard Variants** - Overview & Analytics dashboards
 - **App Demos** - Mail, Tasks, Chat, Calendar applications
@@ -297,7 +286,7 @@ Complete admin dashboard with 30+ pages, built with shadcn/ui:
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! Here's how you can help make this cheat sheet even better:
+We welcome contributions from the community! Here's how you can help make this Cheatsheet even better:
 
 ### **Ways to Contribute**
 
@@ -353,7 +342,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 🙏 Credits & Acknowledgments
 
-This cheat sheet is built on the foundation of incredible open-source projects and the amazing work of their maintainers:
+This Cheatsheet is built on the foundation of incredible open-source projects and the amazing work of their maintainers:
 
 - **[shadcn](https://twitter.com/shadcn)** - For creating the amazing shadcn/ui component library
 - **[shadcn/ui](https://ui.shadcn.com)** - Beautiful and accessible React components
