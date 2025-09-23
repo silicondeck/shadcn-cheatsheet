@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { GoogleTagManager } from '@next/third-parties/google'
 
 import "./globals.css"
 
@@ -13,7 +14,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://shadcnstore.com/cheatsheet"),
-  title: "Shadcn UI Cheatsheet - Complete Component Guide & Examples (2024)",
+  title: "Shadcn UI Cheatsheet - Complete Component Guide & Examples",
   description:
     "Interactive Shadcn/UI cheatsheet with 45 components, live previews, copy-paste code examples, and props tables. Built with Next.js, Tailwind CSS, and TypeScript.",
   keywords: [
@@ -63,8 +64,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID
+
   return (
     <html lang="en" suppressHydrationWarning>
+      {gtmId && <GoogleTagManager gtmId={gtmId} />}
       <body
         className={`${inter.variable} font-sans antialiased transition-all duration-200`}
       >
