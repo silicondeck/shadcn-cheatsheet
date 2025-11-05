@@ -23,8 +23,8 @@ export default function BreadcrumbWithCustomSeparator() {
           <SlashIcon />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="/components">Components</Link>
+          <BreadcrumbLink href="#" onClick={(e) => e.preventDefault()}>
+            Components
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>

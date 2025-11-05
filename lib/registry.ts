@@ -905,6 +905,11 @@ export const registry: Registry = {
     description: "A vertical resizable demo.",
     files: ["registry/default/examples/resizable-vertical.tsx"],
   },
+  "resizable-handle": {
+    name: "resizable-handle",
+    description: "A resizable example with handle.",
+    files: ["registry/default/examples/resizable-handle.tsx"],
+  },
 
   // Scroll Area
   "scroll-area-demo": {

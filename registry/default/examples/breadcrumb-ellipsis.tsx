@@ -25,8 +25,8 @@ export default function BreadcrumbCollapsed() {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="/docs/components">Components</Link>
+          <BreadcrumbLink href="#" onClick={(e) => e.preventDefault()}>
+            Components
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
