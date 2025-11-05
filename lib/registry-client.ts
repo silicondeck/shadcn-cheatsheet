@@ -382,6 +382,8 @@ const registryComponents: Record<
     import("@/registry/default/examples/toggle-group-single"),
   "toggle-group-sm": () =>
     import("@/registry/default/examples/toggle-group-sm"),
+  "toggle-group-spacing": () =>
+    import("@/registry/default/examples/toggle-group-spacing"),
   "toggle-lg": () => import("@/registry/default/examples/toggle-lg"),
   "toggle-outline": () => import("@/registry/default/examples/toggle-outline"),
   "toggle-sm": () => import("@/registry/default/examples/toggle-sm"),

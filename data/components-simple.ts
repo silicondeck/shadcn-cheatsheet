@@ -1507,6 +1507,11 @@ export const components: ComponentInfo[] = [
         name: "Disabled",
         description: "A disabled toggle example.",
         registryName: "toggle-group-disabled",
+      },
+      {
+        name: "Spacing",
+        description: "A toggle group with spacing between items.",
+        registryName: "toggle-group-spacing",
       }
     ],
   },

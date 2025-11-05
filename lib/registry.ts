@@ -1128,6 +1128,11 @@ export const registry: Registry = {
     description: "A small toggle group.",
     files: ["registry/default/examples/toggle-group-sm.tsx"],
   },
+  "toggle-group-spacing": {
+    name: "toggle-group-spacing",
+    description: "A toggle group with spacing.",
+    files: ["registry/default/examples/toggle-group-spacing.tsx"],
+  },
 
   // Tooltip
   "tooltip-demo": {
