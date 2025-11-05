@@ -111,8 +111,47 @@ export default function LiveComponentPreview({
     )
   }
 
+  // Components that need scrollable container (tall forms, long content)
+  const scrollableComponents = [
+    'field-demo',
+    'field-fieldset',
+    'field-group',
+    'field-responsive',
+    'form-demo',
+    'card-with-form',
+    'dialog-demo',
+    'sheet-demo',
+    'drawer-demo',
+  ]
+
+  // Components that need overflow visible (dropdowns, menus, tooltips)
+  const overflowVisibleComponents = [
+    'navigation-menu-demo',
+    'dropdown-menu-demo',
+    'context-menu-demo',
+    'menubar-demo',
+    'hover-card-demo',
+    'popover-demo',
+    'command-demo',
+    'combobox-demo',
+    'select-demo',
+    'date-picker-demo',
+  ]
+
+  const needsScroll = scrollableComponents.includes(registryName || '')
+  const needsOverflowVisible = overflowVisibleComponents.includes(registryName || '')
+
+  // Default: center content, no scroll
+  // If needs scroll: start alignment + scroll
+  // If needs overflow visible: center + overflow visible
+  const containerClass = needsScroll
+    ? "flex items-start justify-center h-full min-h-[200px] bg-background rounded border border-dashed p-5 overflow-auto"
+    : needsOverflowVisible
+      ? "flex items-center justify-center h-full min-h-[200px] bg-background rounded border border-dashed p-5 overflow-visible"
+      : "flex items-center justify-center h-full min-h-[200px] bg-background rounded border border-dashed p-5"
+
   return (
-    <div className="flex items-center justify-center h-full min-h-[200px] bg-background rounded border border-dashed p-5">
+    <div className={containerClass}>
       <Component />
     </div>
   )
