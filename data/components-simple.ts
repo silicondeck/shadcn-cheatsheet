@@ -129,6 +129,73 @@ export const components: ComponentInfo[] = [
     ],
   },
   {
+    id: "button-group",
+    name: "Button Group",
+    description: "A container that groups related buttons together with consistent styling.",
+    category: "form",
+    documentation: {
+      url: "https://ui.shadcn.com/docs/components/button-group",
+      officialDocs: "https://ui.shadcn.com/docs/components/button-group",
+    },
+    examples: [
+      {
+        name: "Default",
+        description: "A basic button group example.",
+        registryName: "button-group-demo",
+      },
+      {
+        name: "Dropdown",
+        description: "A button group with dropdown menu.",
+        registryName: "button-group-dropdown",
+      },
+      {
+        name: "Input",
+        description: "A button group with input.",
+        registryName: "button-group-input",
+      },
+      {
+        name: "Input Group",
+        description: "A button group with input group.",
+        registryName: "button-group-input-group",
+      },
+      {
+        name: "Nested",
+        description: "Nested button groups.",
+        registryName: "button-group-nested",
+      },
+      {
+        name: "Orientation",
+        description: "A button group with different orientations.",
+        registryName: "button-group-orientation",
+      },
+      {
+        name: "Popover",
+        description: "A button group with popover.",
+        registryName: "button-group-popover",
+      },
+      {
+        name: "Select",
+        description: "A button group with select.",
+        registryName: "button-group-select",
+      },
+      {
+        name: "Separator",
+        description: "A button group with separator.",
+        registryName: "button-group-separator",
+      },
+      {
+        name: "Size",
+        description: "Button group with different sizes.",
+        registryName: "button-group-size",
+      },
+      {
+        name: "Split",
+        description: "A split button group.",
+        registryName: "button-group-split",
+      },
+    ],
+  },
+  {
     id: "card",
     name: "Card",
     description: "Displays a card with header, content, and footer.",
@@ -144,6 +211,53 @@ export const components: ComponentInfo[] = [
         registryName: 'card-demo'
       },
     ]
+  },
+  {
+    id: "empty",
+    name: "Empty",
+    description: "A component to display empty states with icon, text, and actions.",
+    category: "feedback",
+    documentation: {
+      url: "https://ui.shadcn.com/docs/components/empty",
+      officialDocs: "https://ui.shadcn.com/docs/components/empty",
+    },
+    examples: [
+      {
+        name: "Default",
+        description: "An empty state demo.",
+        registryName: "empty-demo",
+      },
+      {
+        name: "Avatar",
+        description: "An empty state with avatar.",
+        registryName: "empty-avatar",
+      },
+      {
+        name: "Avatar Group",
+        description: "An empty state with avatar group.",
+        registryName: "empty-avatar-group",
+      },
+      {
+        name: "Background",
+        description: "An empty state with background.",
+        registryName: "empty-background",
+      },
+      {
+        name: "Icon",
+        description: "An empty state with icon.",
+        registryName: "empty-icon",
+      },
+      {
+        name: "Input Group",
+        description: "An empty state with input group.",
+        registryName: "empty-input-group",
+      },
+      {
+        name: "Outline",
+        description: "An empty state with outline.",
+        registryName: "empty-outline",
+      },
+    ],
   },
   {
     id: "checkbox",
@@ -553,6 +667,78 @@ export const components: ComponentInfo[] = [
     ]
   },
   {
+    id: "field",
+    name: "Field",
+    description: "A labeled form field with support for various input types and validation states.",
+    category: "form",
+    documentation: {
+      url: "https://ui.shadcn.com/docs/components/field",
+      officialDocs: "https://ui.shadcn.com/docs/components/field",
+    },
+    examples: [
+      {
+        name: "Default",
+        description: "A field demo.",
+        registryName: "field-demo",
+      },
+      {
+        name: "Checkbox",
+        description: "A field with checkbox.",
+        registryName: "field-checkbox",
+      },
+      {
+        name: "Choice Card",
+        description: "A field with choice card.",
+        registryName: "field-choice-card",
+      },
+      {
+        name: "Fieldset",
+        description: "A field with fieldset.",
+        registryName: "field-fieldset",
+      },
+      {
+        name: "Group",
+        description: "A field group.",
+        registryName: "field-group",
+      },
+      {
+        name: "Input",
+        description: "A field with input.",
+        registryName: "field-input",
+      },
+      {
+        name: "Radio",
+        description: "A field with radio.",
+        registryName: "field-radio",
+      },
+      {
+        name: "Responsive",
+        description: "A responsive field.",
+        registryName: "field-responsive",
+      },
+      {
+        name: "Select",
+        description: "A field with select.",
+        registryName: "field-select",
+      },
+      {
+        name: "Slider",
+        description: "A field with slider.",
+        registryName: "field-slider",
+      },
+      {
+        name: "Switch",
+        description: "A field with switch.",
+        registryName: "field-switch",
+      },
+      {
+        name: "Textarea",
+        description: "A field with textarea.",
+        registryName: "field-textarea",
+      },
+    ],
+  },
+  {
     id: "dialog",
     name: "Dialog",
     description:
@@ -634,6 +820,68 @@ export const components: ComponentInfo[] = [
     ],
   },
   {
+    id: "input-group",
+    name: "Input Group",
+    description: "A component for grouping related form inputs with addons and buttons.",
+    category: "form",
+    documentation: {
+      url: "https://ui.shadcn.com/docs/components/input-group",
+      officialDocs: "https://ui.shadcn.com/docs/components/input-group",
+    },
+    examples: [
+      {
+        name: "Default",
+        description: "An input group demo.",
+        registryName: "input-group-demo",
+      },
+      {
+        name: "Button",
+        description: "An input group with button.",
+        registryName: "input-group-button",
+      },
+      {
+        name: "Custom",
+        description: "A custom input group.",
+        registryName: "input-group-custom",
+      },
+      {
+        name: "Dropdown",
+        description: "An input group with dropdown.",
+        registryName: "input-group-dropdown",
+      },
+      {
+        name: "Icon",
+        description: "An input group with icon.",
+        registryName: "input-group-icon",
+      },
+      {
+        name: "Label",
+        description: "An input group with label.",
+        registryName: "input-group-label",
+      },
+      {
+        name: "Spinner",
+        description: "An input group with spinner.",
+        registryName: "input-group-spinner",
+      },
+      {
+        name: "Text",
+        description: "An input group with text.",
+        registryName: "input-group-text",
+      },
+      {
+        name: "Textarea",
+        description: "An input group with textarea.",
+        registryName: "input-group-textarea",
+      },
+      {
+        name: "Tooltip",
+        description: "An input group with tooltip.",
+        registryName: "input-group-tooltip",
+      },
+    ],
+  },
+  {
     id: "input-otp",
     name: "Input OTP",
     description:
@@ -672,6 +920,68 @@ export const components: ComponentInfo[] = [
     ],
   },
   {
+    id: "item",
+    name: "Item",
+    description: "A versatile component for displaying list items with various content types and layouts.",
+    category: "display",
+    documentation: {
+      url: "https://ui.shadcn.com/docs/components/item",
+      officialDocs: "https://ui.shadcn.com/docs/components/item",
+    },
+    examples: [
+      {
+        name: "Default",
+        description: "An item demo.",
+        registryName: "item-demo",
+      },
+      {
+        name: "Avatar",
+        description: "An item with avatar.",
+        registryName: "item-avatar",
+      },
+      {
+        name: "Dropdown",
+        description: "An item with dropdown.",
+        registryName: "item-dropdown",
+      },
+      {
+        name: "Group",
+        description: "An item group.",
+        registryName: "item-group",
+      },
+      {
+        name: "Header",
+        description: "An item with header.",
+        registryName: "item-header",
+      },
+      {
+        name: "Icon",
+        description: "An item with icon.",
+        registryName: "item-icon",
+      },
+      {
+        name: "Image",
+        description: "An item with image.",
+        registryName: "item-image",
+      },
+      {
+        name: "Link",
+        description: "An item link.",
+        registryName: "item-link",
+      },
+      {
+        name: "Size",
+        description: "Item with different sizes.",
+        registryName: "item-size",
+      },
+      {
+        name: "Variant",
+        description: "Item with different variants.",
+        registryName: "item-variant",
+      },
+    ],
+  },
+  {
     id: "label",
     name: "Label",
     description: "Renders an accessible label associated with controls.",
@@ -685,6 +995,43 @@ export const components: ComponentInfo[] = [
         name: "Default",
         description: "A basic label example.",
         registryName: "label-demo",
+      },
+    ],
+  },
+  {
+    id: "kbd",
+    name: "Kbd",
+    description: "Displays keyboard key abbreviations with optional styling and grouping.",
+    category: "display",
+    documentation: {
+      url: "https://ui.shadcn.com/docs/components/kbd",
+      officialDocs: "https://ui.shadcn.com/docs/components/kbd",
+    },
+    examples: [
+      {
+        name: "Default",
+        description: "A kbd demo.",
+        registryName: "kbd-demo",
+      },
+      {
+        name: "Button",
+        description: "A kbd with button.",
+        registryName: "kbd-button",
+      },
+      {
+        name: "Group",
+        description: "A kbd group.",
+        registryName: "kbd-group",
+      },
+      {
+        name: "Input Group",
+        description: "A kbd with input group.",
+        registryName: "kbd-input-group",
+      },
+      {
+        name: "Tooltip",
+        description: "A kbd with tooltip.",
+        registryName: "kbd-tooltip",
       },
     ],
   },
@@ -719,6 +1066,38 @@ export const components: ComponentInfo[] = [
         name: "Default",
         description: "A basic navigation menu example.",
         registryName: "navigation-menu-demo",
+      },
+    ],
+  },
+  {
+    id: "native-select",
+    name: "Native Select",
+    description: "An accessible select component using the native HTML select element.",
+    category: "form",
+    documentation: {
+      url: "https://ui.shadcn.com/docs/components/native-select",
+      officialDocs: "https://ui.shadcn.com/docs/components/native-select",
+    },
+    examples: [
+      {
+        name: "Default",
+        description: "A native select demo.",
+        registryName: "native-select-demo",
+      },
+      {
+        name: "Disabled",
+        description: "A disabled native select.",
+        registryName: "native-select-disabled",
+      },
+      {
+        name: "Groups",
+        description: "A native select with groups.",
+        registryName: "native-select-groups",
+      },
+      {
+        name: "Invalid",
+        description: "A native select with invalid state.",
+        registryName: "native-select-invalid",
       },
     ],
   },
@@ -1149,6 +1528,68 @@ export const components: ComponentInfo[] = [
       },
     ],
   },
+  {
+    id: "spinner",
+    name: "Spinner",
+    description: "A loading spinner component for indicating async operations and loading states.",
+    category: "feedback",
+    documentation: {
+      url: "https://ui.shadcn.com/docs/components/spinner",
+      officialDocs: "https://ui.shadcn.com/docs/components/spinner",
+    },
+    examples: [
+      {
+        name: "Default",
+        description: "A spinner demo.",
+        registryName: "spinner-demo",
+      },
+      {
+        name: "Badge",
+        description: "A spinner with badge.",
+        registryName: "spinner-badge",
+      },
+      {
+        name: "Basic",
+        description: "A basic spinner.",
+        registryName: "spinner-basic",
+      },
+      {
+        name: "Button",
+        description: "A spinner with button.",
+        registryName: "spinner-button",
+      },
+      {
+        name: "Color",
+        description: "Spinner with different colors.",
+        registryName: "spinner-color",
+      },
+      {
+        name: "Custom",
+        description: "A custom spinner.",
+        registryName: "spinner-custom",
+      },
+      {
+        name: "Empty",
+        description: "An empty spinner.",
+        registryName: "spinner-empty",
+      },
+      {
+        name: "Input Group",
+        description: "A spinner with input group.",
+        registryName: "spinner-input-group",
+      },
+      {
+        name: "Item",
+        description: "A spinner with item.",
+        registryName: "spinner-item",
+      },
+      {
+        name: "Size",
+        description: "Spinner with different sizes.",
+        registryName: "spinner-size",
+      },
+    ],
+  },
 ]
 
 /**
@@ -1157,3 +1598,4 @@ export const components: ComponentInfo[] = [
 export function getAllComponentsSync(): ComponentInfo[] {
   return components
 }
+

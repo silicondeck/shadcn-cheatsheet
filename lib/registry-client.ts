@@ -70,6 +70,19 @@ const registryComponents: Record<
   "button-with-icon": () =>
     import("@/registry/default/examples/button-with-icon"),
 
+  // Button Group
+  "button-group-demo": () => import("@/registry/default/examples/button-group-demo"),
+  "button-group-dropdown": () => import("@/registry/default/examples/button-group-dropdown"),
+  "button-group-input": () => import("@/registry/default/examples/button-group-input"),
+  "button-group-input-group": () => import("@/registry/default/examples/button-group-input-group"),
+  "button-group-nested": () => import("@/registry/default/examples/button-group-nested"),
+  "button-group-orientation": () => import("@/registry/default/examples/button-group-orientation"),
+  "button-group-popover": () => import("@/registry/default/examples/button-group-popover"),
+  "button-group-select": () => import("@/registry/default/examples/button-group-select"),
+  "button-group-separator": () => import("@/registry/default/examples/button-group-separator"),
+  "button-group-size": () => import("@/registry/default/examples/button-group-size"),
+  "button-group-split": () => import("@/registry/default/examples/button-group-split"),
+
   // Calendar
   'calendar-demo': () => import('@/registry/default/examples/calendar-demo'),
   'calendar-form': () => import('@/registry/default/examples/calendar-form'),
@@ -243,6 +256,79 @@ const registryComponents: Record<
 
   // Separator
   "separator-demo": () => import("@/registry/default/examples/separator-demo"),
+
+  // Empty
+  "empty-demo": () => import("@/registry/default/examples/empty-demo"),
+  "empty-avatar": () => import("@/registry/default/examples/empty-avatar"),
+  "empty-avatar-group": () => import("@/registry/default/examples/empty-avatar-group"),
+  "empty-background": () => import("@/registry/default/examples/empty-background"),
+  "empty-icon": () => import("@/registry/default/examples/empty-icon"),
+  "empty-input-group": () => import("@/registry/default/examples/empty-input-group"),
+  "empty-outline": () => import("@/registry/default/examples/empty-outline"),
+
+  // Field
+  "field-demo": () => import("@/registry/default/examples/field-demo"),
+  "field-fieldset": () => import("@/registry/default/examples/field-fieldset"),
+  "field-input": () => import("@/registry/default/examples/field-input"),
+  "field-select": () => import("@/registry/default/examples/field-select"),
+  "field-textarea": () => import("@/registry/default/examples/field-textarea"),
+  "field-radio": () => import("@/registry/default/examples/field-radio"),
+  "field-checkbox": () => import("@/registry/default/examples/field-checkbox"),
+  "field-switch": () => import("@/registry/default/examples/field-switch"),
+  "field-slider": () => import("@/registry/default/examples/field-slider"),
+  "field-choice-card": () => import("@/registry/default/examples/field-choice-card"),
+  "field-group": () => import("@/registry/default/examples/field-group"),
+  "field-responsive": () => import("@/registry/default/examples/field-responsive"),
+
+  // Input Group
+  "input-group-demo": () => import("@/registry/default/examples/input-group-demo"),
+  "input-group-button": () => import("@/registry/default/examples/input-group-button"),
+  "input-group-button-group": () => import("@/registry/default/examples/input-group-button-group"),
+  "input-group-custom": () => import("@/registry/default/examples/input-group-custom"),
+  "input-group-dropdown": () => import("@/registry/default/examples/input-group-dropdown"),
+  "input-group-icon": () => import("@/registry/default/examples/input-group-icon"),
+  "input-group-label": () => import("@/registry/default/examples/input-group-label"),
+  "input-group-text": () => import("@/registry/default/examples/input-group-text"),
+  "input-group-textarea": () => import("@/registry/default/examples/input-group-textarea"),
+  "input-group-spinner": () => import("@/registry/default/examples/input-group-spinner"),
+  "input-group-tooltip": () => import("@/registry/default/examples/input-group-tooltip"),
+
+  // Item
+  "item-demo": () => import("@/registry/default/examples/item-demo"),
+  "item-avatar": () => import("@/registry/default/examples/item-avatar"),
+  "item-dropdown": () => import("@/registry/default/examples/item-dropdown"),
+  "item-group": () => import("@/registry/default/examples/item-group"),
+  "item-header": () => import("@/registry/default/examples/item-header"),
+  "item-icon": () => import("@/registry/default/examples/item-icon"),
+  "item-image": () => import("@/registry/default/examples/item-image"),
+  "item-link": () => import("@/registry/default/examples/item-link"),
+  "item-size": () => import("@/registry/default/examples/item-size"),
+  "item-variant": () => import("@/registry/default/examples/item-variant"),
+
+  // Kbd
+  "kbd-demo": () => import("@/registry/default/examples/kbd-demo"),
+  "kbd-button": () => import("@/registry/default/examples/kbd-button"),
+  "kbd-group": () => import("@/registry/default/examples/kbd-group"),
+  "kbd-input-group": () => import("@/registry/default/examples/kbd-input-group"),
+  "kbd-tooltip": () => import("@/registry/default/examples/kbd-tooltip"),
+
+  // Native Select
+  "native-select-demo": () => import("@/registry/default/examples/native-select-demo"),
+  "native-select-disabled": () => import("@/registry/default/examples/native-select-disabled"),
+  "native-select-groups": () => import("@/registry/default/examples/native-select-groups"),
+  "native-select-invalid": () => import("@/registry/default/examples/native-select-invalid"),
+
+  // Spinner
+  "spinner-demo": () => import("@/registry/default/examples/spinner-demo"),
+  "spinner-basic": () => import("@/registry/default/examples/spinner-basic"),
+  "spinner-badge": () => import("@/registry/default/examples/spinner-badge"),
+  "spinner-button": () => import("@/registry/default/examples/spinner-button"),
+  "spinner-color": () => import("@/registry/default/examples/spinner-color"),
+  "spinner-custom": () => import("@/registry/default/examples/spinner-custom"),
+  "spinner-empty": () => import("@/registry/default/examples/spinner-empty"),
+  "spinner-input-group": () => import("@/registry/default/examples/spinner-input-group"),
+  "spinner-item": () => import("@/registry/default/examples/spinner-item"),
+  "spinner-size": () => import("@/registry/default/examples/spinner-size"),
 
   // Sheet
   "sheet-demo": () => import("@/registry/default/examples/sheet-demo"),

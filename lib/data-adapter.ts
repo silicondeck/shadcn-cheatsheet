@@ -18,18 +18,18 @@ function createVariantId(example: ComponentInfo["examples"][0], componentId: str
   if (example.registryName) {
     return example.registryName
   }
-  
+
   // Fallback: convert example name to kebab-case
   const kebabName = example.name
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
-  
+
   // If name is generic like "default", use component prefix
   if (kebabName === 'default' || kebabName === 'demo') {
     return `${componentId}-default`
   }
-  
+
   return kebabName
 }
 
@@ -45,6 +45,7 @@ export const COMPONENT_DEPENDENCIES: Record<string, string[]> = {
   badge: [],
   breadcrumb: [],
   button: ["@radix-ui/react-slot"],
+  "button-group": [],
   calendar: ["react-day-picker@latest", "date-fns"],
   card: [],
   carousel: ["embla-carousel-react"],
@@ -56,6 +57,8 @@ export const COMPONENT_DEPENDENCIES: Record<string, string[]> = {
   dialog: ["@radix-ui/react-dialog"],
   drawer: ["vaul"],
   "dropdown-menu": ["@radix-ui/react-dropdown-menu"],
+  empty: [],
+  field: [],
   form: [
     "@radix-ui/react-label",
     "@radix-ui/react-slot",
@@ -65,9 +68,13 @@ export const COMPONENT_DEPENDENCIES: Record<string, string[]> = {
   ],
   "hover-card": ["@radix-ui/react-hover-card"],
   input: [],
+  "input-group": [],
   "input-otp": ["input-otp"],
+  item: [],
+  kbd: [],
   label: ["@radix-ui/react-label"],
   menubar: ["@radix-ui/react-menubar"],
+  "native-select": [],
   "navigation-menu": ["@radix-ui/react-navigation-menu"],
   pagination: [],
   popover: ["@radix-ui/react-popover"],
@@ -82,6 +89,7 @@ export const COMPONENT_DEPENDENCIES: Record<string, string[]> = {
   skeleton: [],
   slider: ["@radix-ui/react-slider"],
   sonner: ["sonner", "next-themes"],
+  spinner: ["class-variance-authority"],
   switch: ["@radix-ui/react-switch"],
   table: [],
   tabs: ["@radix-ui/react-tabs"],
@@ -103,7 +111,6 @@ export const COMPONENT_DEPENDENCIES: Record<string, string[]> = {
 export function convertToComponentDefinition(
   comp: ComponentInfo
 ): ComponentDefinition {
-  const primaryExample = comp.examples[0] // Use first example as primary
   const dependencies = COMPONENT_DEPENDENCIES[comp.id] || []
 
   return {
@@ -112,7 +119,7 @@ export function convertToComponentDefinition(
     description: comp.description,
     category: comp.category as ComponentCategory,
     installation: {
-      command: `npx shadcn@latest add ${primaryExample.registryName}`,
+      command: `npx shadcn@latest add ${comp.id}`,
       dependencies,
     },
     documentation: {

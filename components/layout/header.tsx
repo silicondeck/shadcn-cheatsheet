@@ -72,7 +72,10 @@ const navigationItems = [
   {
     label: "Blocks",
     href: "https://shadcnstore.com/blocks/",
-    isExternal: true,
+  },
+  {
+    label: "Templates",
+    href: "https://shadcnstore.com/templates/",
   },
   {
     label: "Admin Dashboard",

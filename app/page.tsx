@@ -69,7 +69,7 @@ function createSearchComponents(): ComponentDefinition[] {
       tags: comp.tags || [],
       featured: comp.featured || false,
     }
-  })
+  }).sort((a, b) => a.name.localeCompare(b.name)) // Sort alphabetically by component name
 }
 
 // Initialize search components
@@ -225,15 +225,14 @@ function HomeContent() {
     []
   )
 
-  // Combined search and category filtering with alphabetical sorting
+  // Combined search and category filtering
   const getFilteredResults = useCallback(() => {
     let results = SEARCH_COMPONENTS
 
     // Apply category filter
     results = filterByCategory(results, selectedCategory)
 
-    // Sort alphabetically by component name
-    results = results.sort((a, b) => a.name.localeCompare(b.name))
+    // Results are already sorted alphabetically in SEARCH_COMPONENTS
 
     return results
   }, [selectedCategory, filterByCategory])

@@ -79,15 +79,18 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({
   className = "",
 }) => {
   const [copiedItem, setCopiedItem] = useState<string | null>(null)
+  const [variantSourceCodes, setVariantSourceCodes] = useState<
+    Record<string, string>
+  >({})
 
   // Generate install command based on package manager
   const getInstallCommand = useCallback(
     (component: ComponentData) => {
       const commands = {
-        npm: `npx shadcn@latest add ${component.name.toLowerCase()}`,
-        yarn: `yarn shadcn@latest add ${component.name.toLowerCase()}`,
-        pnpm: `pnpm dlx shadcn@latest add ${component.name.toLowerCase()}`,
-        bun: `bunx --bun shadcn@latest add ${component.name.toLowerCase()}`,
+        npm: `npx shadcn@latest add ${component.id}`,
+        yarn: `yarn shadcn@latest add ${component.id}`,
+        pnpm: `pnpm dlx shadcn@latest add ${component.id}`,
+        bun: `bunx --bun shadcn@latest add ${component.id}`,
       }
       return commands[packageManager]
     },
@@ -99,11 +102,46 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({
     (component: ComponentData, variant?: ComponentVariant) => {
       const baseName = component.name
       if (variant) {
-        return `import { ${baseName} } from "@/components/ui/${component.name.toLowerCase()}"`
+        return `import { ${baseName} } from "@/components/ui/${component.id}"`
       }
-      return `import { ${baseName} } from "@/components/ui/${component.name.toLowerCase()}"`
+      return `import { ${baseName} } from "@/components/ui/${component.id}"`
     },
     []
+  )
+
+  // Fetch variant source code on demand
+  const fetchVariantSourceCode = useCallback(
+    async (variant: ComponentVariant) => {
+      if (!variant._registryFile) return ""
+
+      // Check if already cached
+      if (variantSourceCodes[variant.id]) {
+        return variantSourceCodes[variant.id]
+      }
+
+      try {
+        const response = await fetch(
+          `/api/registry/source?name=${variant._registryFile}`
+        )
+        if (!response.ok) {
+          throw new Error("Failed to fetch source code")
+        }
+        const data = await response.json()
+        const sourceCode = data.content || ""
+
+        // Cache the source code
+        setVariantSourceCodes((prev) => ({
+          ...prev,
+          [variant.id]: sourceCode,
+        }))
+
+        return sourceCode
+      } catch {
+        toast.error("Failed to load source code")
+        return ""
+      }
+    },
+    [variantSourceCodes]
   )
 
   // Copy text to clipboard with feedback
@@ -332,12 +370,16 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({
                                     <Button
                                       variant="ghost"
                                       size="sm"
-                                      onClick={(e) => {
+                                      onClick={async (e) => {
                                         e.stopPropagation()
-                                        copyToClipboard(
-                                          variant.code,
-                                          `${variant.name} Usage`
-                                        )
+                                        const sourceCode =
+                                          await fetchVariantSourceCode(variant)
+                                        if (sourceCode) {
+                                          copyToClipboard(
+                                            sourceCode,
+                                            `${variant.name} Usage`
+                                          )
+                                        }
                                       }}
                                       className="h-6 w-6 p-0 cursor-pointer"
                                     >

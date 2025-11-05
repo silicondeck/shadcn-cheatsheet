@@ -169,6 +169,63 @@ export const registry: Registry = {
     files: ["registry/default/examples/button-with-icon.tsx"],
   },
 
+  // Button Group
+  "button-group-demo": {
+    name: "button-group-demo",
+    description: "A button group demo.",
+    files: ["registry/default/examples/button-group-demo.tsx"],
+  },
+  "button-group-dropdown": {
+    name: "button-group-dropdown",
+    description: "A button group with dropdown.",
+    files: ["registry/default/examples/button-group-dropdown.tsx"],
+  },
+  "button-group-input": {
+    name: "button-group-input",
+    description: "A button group with input.",
+    files: ["registry/default/examples/button-group-input.tsx"],
+  },
+  "button-group-input-group": {
+    name: "button-group-input-group",
+    description: "A button group with input group.",
+    files: ["registry/default/examples/button-group-input-group.tsx"],
+  },
+  "button-group-nested": {
+    name: "button-group-nested",
+    description: "Nested button groups.",
+    files: ["registry/default/examples/button-group-nested.tsx"],
+  },
+  "button-group-orientation": {
+    name: "button-group-orientation",
+    description: "A button group with different orientations.",
+    files: ["registry/default/examples/button-group-orientation.tsx"],
+  },
+  "button-group-popover": {
+    name: "button-group-popover",
+    description: "A button group with popover.",
+    files: ["registry/default/examples/button-group-popover.tsx"],
+  },
+  "button-group-select": {
+    name: "button-group-select",
+    description: "A button group with select.",
+    files: ["registry/default/examples/button-group-select.tsx"],
+  },
+  "button-group-separator": {
+    name: "button-group-separator",
+    description: "A button group with separator.",
+    files: ["registry/default/examples/button-group-separator.tsx"],
+  },
+  "button-group-size": {
+    name: "button-group-size",
+    description: "Button group with different sizes.",
+    files: ["registry/default/examples/button-group-size.tsx"],
+  },
+  "button-group-split": {
+    name: "button-group-split",
+    description: "A split button group.",
+    files: ["registry/default/examples/button-group-split.tsx"],
+  },
+
   // Calendar
   "calendar-demo": {
     name: "calendar-demo",
@@ -502,6 +559,315 @@ export const registry: Registry = {
     name: "popover-demo",
     description: "A popover demo.",
     files: ["registry/default/examples/popover-demo.tsx"],
+  },
+
+  // Empty
+  "empty-demo": {
+    name: "empty-demo",
+    description: "An empty state demo.",
+    files: ["registry/default/examples/empty-demo.tsx"],
+  },
+  "empty-avatar": {
+    name: "empty-avatar",
+    description: "An empty state with avatar.",
+    files: ["registry/default/examples/empty-avatar.tsx"],
+  },
+  "empty-avatar-group": {
+    name: "empty-avatar-group",
+    description: "An empty state with avatar group.",
+    files: ["registry/default/examples/empty-avatar-group.tsx"],
+  },
+  "empty-background": {
+    name: "empty-background",
+    description: "An empty state with background.",
+    files: ["registry/default/examples/empty-background.tsx"],
+  },
+  "empty-icon": {
+    name: "empty-icon",
+    description: "An empty state with icon.",
+    files: ["registry/default/examples/empty-icon.tsx"],
+  },
+  "empty-input-group": {
+    name: "empty-input-group",
+    description: "An empty state with input group.",
+    files: ["registry/default/examples/empty-input-group.tsx"],
+  },
+  "empty-outline": {
+    name: "empty-outline",
+    description: "An empty state with outline.",
+    files: ["registry/default/examples/empty-outline.tsx"],
+  },
+
+  // Field (form helpers)
+  "field-demo": {
+    name: "field-demo",
+    description: "A field demo.",
+    files: ["registry/default/examples/field-demo.tsx"],
+  },
+  "field-fieldset": {
+    name: "field-fieldset",
+    description: "A field with fieldset.",
+    files: ["registry/default/examples/field-fieldset.tsx"],
+  },
+  "field-input": {
+    name: "field-input",
+    description: "A field with input.",
+    files: ["registry/default/examples/field-input.tsx"],
+  },
+  "field-select": {
+    name: "field-select",
+    description: "A field with select.",
+    files: ["registry/default/examples/field-select.tsx"],
+  },
+  "field-textarea": {
+    name: "field-textarea",
+    description: "A field with textarea.",
+    files: ["registry/default/examples/field-textarea.tsx"],
+  },
+  "field-radio": {
+    name: "field-radio",
+    description: "A field with radio.",
+    files: ["registry/default/examples/field-radio.tsx"],
+  },
+  "field-checkbox": {
+    name: "field-checkbox",
+    description: "A field with checkbox.",
+    files: ["registry/default/examples/field-checkbox.tsx"],
+  },
+  "field-switch": {
+    name: "field-switch",
+    description: "A field with switch.",
+    files: ["registry/default/examples/field-switch.tsx"],
+  },
+  "field-slider": {
+    name: "field-slider",
+    description: "A field with slider.",
+    files: ["registry/default/examples/field-slider.tsx"],
+  },
+  "field-choice-card": {
+    name: "field-choice-card",
+    description: "A field with choice card.",
+    files: ["registry/default/examples/field-choice-card.tsx"],
+  },
+  "field-group": {
+    name: "field-group",
+    description: "A field group demo.",
+    files: ["registry/default/examples/field-group.tsx"],
+  },
+  "field-responsive": {
+    name: "field-responsive",
+    description: "Responsive field examples.",
+    files: ["registry/default/examples/field-responsive.tsx"],
+  },
+
+  // Input Group
+  "input-group-demo": {
+    name: "input-group-demo",
+    description: "An input group demo.",
+    files: ["registry/default/examples/input-group-demo.tsx"],
+  },
+  "input-group-button": {
+    name: "input-group-button",
+    description: "Input group with button.",
+    files: ["registry/default/examples/input-group-button.tsx"],
+  },
+  "input-group-button-group": {
+    name: "input-group-button-group",
+    description: "Input group with button group.",
+    files: ["registry/default/examples/input-group-button-group.tsx"],
+  },
+  "input-group-custom": {
+    name: "input-group-custom",
+    description: "Custom input group.",
+    files: ["registry/default/examples/input-group-custom.tsx"],
+  },
+  "input-group-dropdown": {
+    name: "input-group-dropdown",
+    description: "Input group with dropdown.",
+    files: ["registry/default/examples/input-group-dropdown.tsx"],
+  },
+  "input-group-icon": {
+    name: "input-group-icon",
+    description: "Input group with icon.",
+    files: ["registry/default/examples/input-group-icon.tsx"],
+  },
+  "input-group-label": {
+    name: "input-group-label",
+    description: "Input group with label.",
+    files: ["registry/default/examples/input-group-label.tsx"],
+  },
+  "input-group-text": {
+    name: "input-group-text",
+    description: "Input group with text.",
+    files: ["registry/default/examples/input-group-text.tsx"],
+  },
+  "input-group-textarea": {
+    name: "input-group-textarea",
+    description: "Input group with textarea.",
+    files: ["registry/default/examples/input-group-textarea.tsx"],
+  },
+  "input-group-spinner": {
+    name: "input-group-spinner",
+    description: "Input group with spinner.",
+    files: ["registry/default/examples/input-group-spinner.tsx"],
+  },
+  "input-group-tooltip": {
+    name: "input-group-tooltip",
+    description: "Input group with tooltip.",
+    files: ["registry/default/examples/input-group-tooltip.tsx"],
+  },
+
+  // Item
+  "item-demo": {
+    name: "item-demo",
+    description: "An item demo.",
+    files: ["registry/default/examples/item-demo.tsx"],
+  },
+  "item-avatar": {
+    name: "item-avatar",
+    description: "Item with avatar.",
+    files: ["registry/default/examples/item-avatar.tsx"],
+  },
+  "item-dropdown": {
+    name: "item-dropdown",
+    description: "Item with dropdown.",
+    files: ["registry/default/examples/item-dropdown.tsx"],
+  },
+  "item-group": {
+    name: "item-group",
+    description: "Item group.",
+    files: ["registry/default/examples/item-group.tsx"],
+  },
+  "item-header": {
+    name: "item-header",
+    description: "Item with header.",
+    files: ["registry/default/examples/item-header.tsx"],
+  },
+  "item-icon": {
+    name: "item-icon",
+    description: "Item with icon.",
+    files: ["registry/default/examples/item-icon.tsx"],
+  },
+  "item-image": {
+    name: "item-image",
+    description: "Item with image.",
+    files: ["registry/default/examples/item-image.tsx"],
+  },
+  "item-link": {
+    name: "item-link",
+    description: "Item as link.",
+    files: ["registry/default/examples/item-link.tsx"],
+  },
+  "item-size": {
+    name: "item-size",
+    description: "Item with size variants.",
+    files: ["registry/default/examples/item-size.tsx"],
+  },
+  "item-variant": {
+    name: "item-variant",
+    description: "Item variants.",
+    files: ["registry/default/examples/item-variant.tsx"],
+  },
+
+  // Kbd
+  "kbd-demo": {
+    name: "kbd-demo",
+    description: "A kbd demo.",
+    files: ["registry/default/examples/kbd-demo.tsx"],
+  },
+  "kbd-button": {
+    name: "kbd-button",
+    description: "Kbd with button.",
+    files: ["registry/default/examples/kbd-button.tsx"],
+  },
+  "kbd-group": {
+    name: "kbd-group",
+    description: "Kbd group.",
+    files: ["registry/default/examples/kbd-group.tsx"],
+  },
+  "kbd-input-group": {
+    name: "kbd-input-group",
+    description: "Kbd with input group.",
+    files: ["registry/default/examples/kbd-input-group.tsx"],
+  },
+  "kbd-tooltip": {
+    name: "kbd-tooltip",
+    description: "Kbd with tooltip.",
+    files: ["registry/default/examples/kbd-tooltip.tsx"],
+  },
+
+  // Native Select
+  "native-select-demo": {
+    name: "native-select-demo",
+    description: "A native select demo.",
+    files: ["registry/default/examples/native-select-demo.tsx"],
+  },
+  "native-select-disabled": {
+    name: "native-select-disabled",
+    description: "A disabled native select.",
+    files: ["registry/default/examples/native-select-disabled.tsx"],
+  },
+  "native-select-groups": {
+    name: "native-select-groups",
+    description: "Native select with option groups.",
+    files: ["registry/default/examples/native-select-groups.tsx"],
+  },
+  "native-select-invalid": {
+    name: "native-select-invalid",
+    description: "Native select invalid state.",
+    files: ["registry/default/examples/native-select-invalid.tsx"],
+  },
+
+  // Spinner
+  "spinner-demo": {
+    name: "spinner-demo",
+    description: "A spinner demo.",
+    files: ["registry/default/examples/spinner-demo.tsx"],
+  },
+  "spinner-basic": {
+    name: "spinner-basic",
+    description: "Basic spinner.",
+    files: ["registry/default/examples/spinner-basic.tsx"],
+  },
+  "spinner-badge": {
+    name: "spinner-badge",
+    description: "Spinner inside badge.",
+    files: ["registry/default/examples/spinner-badge.tsx"],
+  },
+  "spinner-button": {
+    name: "spinner-button",
+    description: "Spinner used inside a button.",
+    files: ["registry/default/examples/spinner-button.tsx"],
+  },
+  "spinner-color": {
+    name: "spinner-color",
+    description: "Spinner color variants.",
+    files: ["registry/default/examples/spinner-color.tsx"],
+  },
+  "spinner-custom": {
+    name: "spinner-custom",
+    description: "Custom spinner.",
+    files: ["registry/default/examples/spinner-custom.tsx"],
+  },
+  "spinner-empty": {
+    name: "spinner-empty",
+    description: "Spinner inside empty state.",
+    files: ["registry/default/examples/spinner-empty.tsx"],
+  },
+  "spinner-input-group": {
+    name: "spinner-input-group",
+    description: "Spinner inside input group.",
+    files: ["registry/default/examples/spinner-input-group.tsx"],
+  },
+  "spinner-item": {
+    name: "spinner-item",
+    description: "Spinner inside item.",
+    files: ["registry/default/examples/spinner-item.tsx"],
+  },
+  "spinner-size": {
+    name: "spinner-size",
+    description: "Spinner size variants.",
+    files: ["registry/default/examples/spinner-size.tsx"],
   },
 
   // Progress

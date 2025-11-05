@@ -44,10 +44,10 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
   // Generate install command based on package manager
   const getInstallCommand = (component: ComponentData) => {
     const commands = {
-      npm: `npx shadcn@latest add ${component.name.toLowerCase()}`,
-      yarn: `yarn dlx shadcn@latest add ${component.name.toLowerCase()}`,
-      pnpm: `pnpm dlx shadcn@latest add ${component.name.toLowerCase()}`,
-      bun: `bunx shadcn@latest add ${component.name.toLowerCase()}`,
+      npm: `npx shadcn@latest add ${component.id}`,
+      yarn: `yarn dlx shadcn@latest add ${component.id}`,
+      pnpm: `pnpm dlx shadcn@latest add ${component.id}`,
+      bun: `bunx shadcn@latest add ${component.id}`,
     }
     return commands[packageManager]
   }

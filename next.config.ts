@@ -6,6 +6,18 @@ const nextConfig: NextConfig = {
     basePath: '/cheatsheet',
     trailingSlash: true,
   }),
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatar.vercel.sh',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
 }
 
 export default nextConfig
