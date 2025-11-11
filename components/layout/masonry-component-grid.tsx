@@ -67,7 +67,7 @@ function useResponsiveColumns() {
  * This component implements a true masonry layout where components are arranged
  * in columns with minimal vertical gaps, similar to Pinterest-style layouts.
  */
-export function MasonryComponentGrid({
+export const MasonryComponentGrid = React.memo(function MasonryComponentGrid({
   components,
   viewMode,
   expandedComponents,
@@ -82,17 +82,9 @@ export function MasonryComponentGrid({
   const columns = useResponsiveColumns()
   const containerRef = useRef<HTMLDivElement>(null)
 
-  if (components.length === 0) {
-    return (
-      <div className="flex items-center justify-center h-64 text-muted-foreground">
-        No components found
-      </div>
-    )
-  }
-
-  // Distribute components across columns for masonry layout
-  const distributeComponents = () => {
-    const columnArrays: ComponentData[][] = Array.from(
+  // Distribute components across columns for masonry layout - memoize
+  const columnArrays = React.useMemo(() => {
+    const columnArraysLocal: ComponentData[][] = Array.from(
       { length: columns },
       () => []
     )
@@ -101,13 +93,19 @@ export function MasonryComponentGrid({
     // we use a round-robin approach but can be enhanced to consider actual heights
     components.forEach((component, index) => {
       const columnIndex = index % columns
-      columnArrays[columnIndex].push(component)
+      columnArraysLocal[columnIndex].push(component)
     })
 
-    return columnArrays
-  }
+    return columnArraysLocal
+  }, [components, columns])
 
-  const columnArrays = distributeComponents()
+  if (components.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-64 text-muted-foreground">
+        No components found
+      </div>
+    )
+  }
 
   return (
     <div
@@ -138,4 +136,4 @@ export function MasonryComponentGrid({
       ))}
     </div>
   )
-}
+})

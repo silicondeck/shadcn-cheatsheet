@@ -69,7 +69,7 @@ export interface ComponentCardProps {
  * />
  * ```
  */
-export const ComponentCard: React.FC<ComponentCardProps> = ({
+export const ComponentCard: React.FC<ComponentCardProps> = React.memo(({
   component,
   isExpanded = true, // Set default to true
   onToggleExpanded,
@@ -159,6 +159,12 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({
     }
   }, [])
 
+  // Memoize install command
+  const installCommand = React.useMemo(
+    () => getInstallCommand(component),
+    [component, packageManager, getInstallCommand]
+  )
+
   return (
     <TooltipProvider>
       <div className={`relative group ${className}`}>
@@ -203,7 +209,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({
                       onClick={(e) => {
                         e.stopPropagation()
                         copyToClipboard(
-                          getInstallCommand(component),
+                          installCommand,
                           "Install Command"
                         )
                       }}
@@ -439,7 +445,10 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({
             </div>
           </CardContent>
         </Card>
-      </div>
+            </div>
     </TooltipProvider>
   )
-}
+})
+
+ComponentCard.displayName = 'ComponentCard'
+

@@ -28,8 +28,8 @@ export const metadata: Metadata = {
     "shadcn ui guide",
     "radix ui components"
   ],
-  authors: [{ name: "SiliconDeck", url: "https://silicondeck.com" }],
-  creator: "SiliconDeck",
+  authors: [{ name: "Shadcn Store", url: "https://shadcnstore.com" }],
+  creator: "Shadcn Store",
   publisher: "SiliconDeck",
   robots: "index, follow",
   openGraph: {
@@ -61,8 +61,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode
+  modal: React.ReactNode
 }>) {
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID
 
@@ -72,7 +74,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-sans antialiased transition-all duration-200`}
       >
-        <AppLayout>{children}</AppLayout>
+        <AppLayout>
+          {children}
+          {modal}
+        </AppLayout>
       </body>
     </html>
   )

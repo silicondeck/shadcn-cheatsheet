@@ -16,8 +16,9 @@ import {
   ComponentVariant,
   PackageManager,
 } from "@/types/core"
-import { COMPONENT_DEPENDENCIES, getAllComponentData } from "@/lib/data-adapter"
+import { COMPONENT_DEPENDENCIES, getAllComponentData, createVariantId } from "@/lib/data-adapter"
 import { PreviewNavigationManager } from "@/lib/preview-navigation"
+import { extractVariantSlug } from "@/lib/seo-metadata"
 import { Button } from "@/components/ui/button"
 import { CategoryBadgeFilter } from "@/components/ui/category-badge-filter"
 import { ComponentPreview } from "@/components/ui/component-preview"
@@ -27,6 +28,7 @@ import { PreviewPanel } from "@/components/ui/preview-panel"
 import { MasonryComponentGrid } from "@/components/layout/masonry-component-grid"
 import { ComponentSearch } from "@/components/search/component-search"
 import { BottomAEOContent } from "@/components/seo/bottom-aeo-content"
+import PromoBanner from "@/components/marketing/promo-banner"
 import JsonLd from "./structured-data"
 
 // Get component data using adapter
@@ -54,7 +56,7 @@ function createSearchComponents(): ComponentDefinition[] {
       variants:
         originalInfo?.examples.map(
           (example: ComponentInfo["examples"][0]) => ({
-            id: example.registryName || example.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+            id: createVariantId(example, comp.id),
             name: example.name,
             description: example.description,
             code: "", // Will be loaded via API
@@ -72,11 +74,8 @@ function createSearchComponents(): ComponentDefinition[] {
   }).sort((a, b) => a.name.localeCompare(b.name)) // Sort alphabetically by component name
 }
 
-// Initialize search components
+// Initialize search components at module level
 const SEARCH_COMPONENTS = createSearchComponents()
-
-// Initialize navigation manager
-const navigationManager = new PreviewNavigationManager([])
 
 // Convert ComponentDefinition to ComponentData format
 const convertToComponentData = (comp: ComponentDefinition): ComponentData => ({
@@ -123,6 +122,9 @@ function HomeContent() {
   const searchParams = useSearchParams()
   const [hasRestoredFromURL, setHasRestoredFromURL] = useState(false)
 
+  // Create navigation manager only once with useMemo
+  const navigationManager = React.useMemo(() => new PreviewNavigationManager([]), [])
+
   const [searchResults, setSearchResults] =
     useState<ComponentDefinition[]>(SEARCH_COMPONENTS)
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
@@ -156,7 +158,7 @@ function HomeContent() {
   const initializeNavigation = useCallback(() => {
     const componentDataList = searchResults.map(convertToComponentData)
     navigationManager.updateComponents(componentDataList)
-  }, [searchResults])
+  }, [searchResults, navigationManager])
 
   // Initialize navigation when search results change
   React.useEffect(() => {
@@ -185,7 +187,7 @@ function HomeContent() {
       }
       setHasRestoredFromURL(true)
     }
-  }, [searchParams, isPreviewOpen, hasRestoredFromURL])
+  }, [searchParams, isPreviewOpen, hasRestoredFromURL, navigationManager])
 
   // Keyboard shortcut for command search
   React.useEffect(() => {
@@ -267,29 +269,16 @@ function HomeContent() {
     }))
   }
 
-  // Handle component preview with URL update
+  // Handle component preview - navigate to clean URL (intercepted by parallel route)
   const handlePreview = useCallback(
     (component: ComponentData, variant?: ComponentVariant) => {
-      setPreviewComponent(component)
-      setCurrentVariant(variant)
-
-      // Initialize navigation
-      navigationManager.initializeNavigation(component, variant)
-
-      setIsPreviewOpen(true)
-
-      // Update URL with component parameter for SEO and bookmarking
-      const url = new URL(window.location.href)
-      url.searchParams.set('component', component.id)
+      // Navigate to clean URL - will be intercepted by @modal parallel route
       if (variant) {
-        url.searchParams.set('variant', variant.id)
+        const variantSlug = extractVariantSlug(variant.id, component.id)
+        router.push(`/component/${component.id}/${variantSlug}`)
       } else {
-        url.searchParams.delete('variant')
+        router.push(`/component/${component.id}`)
       }
-
-      // Use replace to avoid adding to browser history for every component click
-      // Disable scroll to prevent scrolling to top when opening component details
-      router.replace(url.toString(), { scroll: false })
     },
     [router]
   )
@@ -302,7 +291,7 @@ function HomeContent() {
       currentIndex: currentState?.componentIndex,
       totalComponents,
     }
-  }, [])
+  }, [navigationManager])
 
   // Handle component selection from command search
   const handleComponentSelect = useCallback(
@@ -313,7 +302,10 @@ function HomeContent() {
         setSelectedCategory("all")
       }
 
-      // Convert to ComponentData and preview
+      // Close the command search
+      setIsCommandSearchOpen(false)
+
+      // Convert to ComponentData and navigate to clean URL
       const componentData = convertToComponentData(component)
       handlePreview(componentData)
     },
@@ -348,7 +340,7 @@ function HomeContent() {
       // Update URL without scrolling to maintain user's position
       router.replace(url.toString(), { scroll: false })
     }
-  }, [router])
+  }, [router, navigationManager])
 
   // Handle preview panel close with URL cleanup
   const handlePreviewClose = useCallback(() => {
@@ -382,7 +374,7 @@ function HomeContent() {
         router.replace(url.toString(), { scroll: false })
       }
     },
-    [previewComponent, router]
+    [previewComponent, router, navigationManager]
   )
 
   return (
@@ -455,6 +447,11 @@ function HomeContent() {
                         Variants
                       </div>
                     </div>
+                  </div>
+
+                  {/* Promo Banner */}
+                  <div className="max-w-4xl mx-auto mb-8">
+                    <PromoBanner variant="notification" />
                   </div>
                 </div>
               </div>
@@ -563,6 +560,7 @@ function HomeContent() {
                 packageManager={packageManager}
                 currentIndex={getCurrentNavigationData().currentIndex}
                 totalComponents={getCurrentNavigationData().totalComponents}
+                variantDescription={currentVariant?.description}
               >
                 {previewComponent && (
                   <ComponentErrorBoundary>

@@ -12,8 +12,11 @@ import { ComponentCategory, ComponentData, ComponentDefinition } from "@/types"
 /**
  * Convert example name to URL-friendly variant ID
  * Prefer registryName if available, otherwise convert name to kebab-case
+ *
+ * This is the single source of truth for variant ID generation and should be used
+ * throughout the application to ensure consistency
  */
-function createVariantId(example: ComponentInfo["examples"][0], componentId: string): string {
+export function createVariantId(example: ComponentInfo["examples"][0], componentId: string): string {
   // Use registry name if available (already kebab-case and semantic)
   if (example.registryName) {
     return example.registryName

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect } from "react"
-import { ChevronLeft, ChevronRight, Copy, ExternalLink, X } from "lucide-react"
+import { Blocks, ChevronLeft, ChevronRight, Copy, ExternalLink, LayoutTemplate, X } from "lucide-react"
 import { toast } from "sonner"
 
 import { ComponentData } from "@/types/components"
@@ -29,6 +29,7 @@ export interface PreviewPanelProps {
   packageManager?: "npm" | "yarn" | "pnpm" | "bun"
   currentIndex?: number
   totalComponents?: number
+  variantDescription?: string // Add variant description prop
 }
 
 export const PreviewPanel: React.FC<PreviewPanelProps> = ({
@@ -40,6 +41,7 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
   packageManager = "npm",
   currentIndex,
   totalComponents,
+  variantDescription, // Destructure the new prop
 }) => {
   // Generate install command based on package manager
   const getInstallCommand = (component: ComponentData) => {
@@ -66,8 +68,10 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
 
   // Enhanced keyboard navigation
   useEffect(() => {
+    if (!isOpen) return
+
     const handleKeyNavigation = (event: KeyboardEvent) => {
-      if (!isOpen || !onNavigate) return
+      if (!onNavigate) return
 
       // Only handle navigation if not focused on input elements
       const activeElement = document.activeElement
@@ -90,19 +94,15 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
       }
     }
 
-    if (isOpen) {
-      // Add both capture and bubble phases for better event handling
-      document.addEventListener("keydown", handleKeyNavigation, {
-        capture: true,
-      })
-      window.addEventListener("keydown", handleKeyNavigation)
-    }
+    // Prevent scroll on mount - ensure we stay at the same area of page
+    document.body.style.overflow = 'hidden'
+
+    // Add single event listener
+    document.addEventListener("keydown", handleKeyNavigation)
 
     return () => {
-      document.removeEventListener("keydown", handleKeyNavigation, {
-        capture: true,
-      })
-      window.removeEventListener("keydown", handleKeyNavigation)
+      document.removeEventListener("keydown", handleKeyNavigation)
+      document.body.style.overflow = ''
     }
   }, [isOpen, onNavigate])
 
@@ -120,7 +120,7 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
         >
           <SheetHeader className="p-4 border-b bg-muted/50 flex-shrink-0">
             <div className="flex items-center justify-between flex-wrap gap-2">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 flex-1">
                 {/* Title and category badge */}
                 <div className="flex items-center gap-3">
                   <SheetTitle className="text-lg font-semibold">
@@ -152,6 +152,14 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
 
               {/* Right side actions */}
               <div className="flex items-center gap-1 sm:gap-2">
+                <Button size="sm" onClick={() => window.open('https://shadcnstore.com/blocks', '_self')} className="cursor-pointer !px-4.5">
+                  <Blocks className="w-4 h-4" />
+                  Blocks
+                </Button>
+                <Button size="sm" onClick={() => window.open('https://shadcnstore.com/templates', '_self')} className="cursor-pointer !px-4.5">
+                  <LayoutTemplate className="w-4 h-4" />
+                  Templates
+                </Button>
                 {/* Installation button */}
                 {component && (
                   <Tooltip>
@@ -169,7 +177,7 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
                         autoFocus={false}
                         tabIndex={-1}
                       >
-                        <Copy className="w-4 h-4 mr-2" />
+                        <Copy className="w-4 h-4 mr-1" />
                         Installation
                       </Button>
                     </TooltipTrigger>
@@ -262,6 +270,13 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
                 </Button>
               </div>
             </div>
+
+            {/* Variant Description - displayed below the header */}
+            {variantDescription && (
+              <p className="text-sm text-muted-foreground">
+                {variantDescription}
+              </p>
+            )}
           </SheetHeader>
 
           {/* Panel Content */}

@@ -68,7 +68,7 @@ function ShadcnLogo({ className = "size-5" }: { className?: string }) {
  * Navigation menu items
  */
 const navigationItems = [
-  { label: "Home", href: "/", isExternal: false },
+  { label: "Home", href: "https://shadcnstore.com/", isExternal: false },
   {
     label: "Blocks",
     href: "https://shadcnstore.com/blocks/",

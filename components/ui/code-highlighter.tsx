@@ -2,7 +2,6 @@
 
 import React, { useCallback, useEffect, useState } from "react"
 import { useTheme } from "next-themes"
-import { createHighlighter, type Highlighter } from "shiki"
 
 interface CodeHighlighterProps {
   code: string
@@ -10,25 +9,15 @@ interface CodeHighlighterProps {
   className?: string
 }
 
-export const CodeHighlighter: React.FC<CodeHighlighterProps> = ({
-  code,
-  language = "tsx",
-  className = "",
-}) => {
-  const { theme: systemTheme, resolvedTheme } = useTheme()
-  const [highlighter, setHighlighter] = useState<Highlighter | null>(null)
-  const [highlightedCode, setHighlightedCode] = useState<string>("")
+// Lazy load shiki to avoid WASM loading issues with Turbopack
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let highlighterPromise: Promise<any> | null = null
 
-  // Determine the appropriate Shiki theme based on the current theme
-  const getShikiTheme = useCallback(() => {
-    const currentTheme = resolvedTheme || systemTheme
-    return currentTheme === "dark" ? "github-dark" : "github-light"
-  }, [resolvedTheme, systemTheme])
-
-  useEffect(() => {
-    const initHighlighter = async () => {
+const getHighlighter = async () => {
+  if (!highlighterPromise) {
+    highlighterPromise = import("shiki").then(async (shiki) => {
       try {
-        const shiki = await createHighlighter({
+        return await shiki.createHighlighter({
           themes: ["github-dark", "github-light"],
           langs: [
             "tsx",
@@ -41,10 +30,43 @@ export const CodeHighlighter: React.FC<CodeHighlighterProps> = ({
             "html",
           ],
         })
-        setHighlighter(shiki)
-      } catch {
-        // Shiki highlighter errors disabled for production
-        // console.error("Failed to initialize Shiki highlighter:", error)
+      } catch (error) {
+        console.error("Failed to initialize Shiki highlighter:", error)
+        return null
+      }
+    })
+  }
+  return highlighterPromise
+}
+
+export const CodeHighlighter: React.FC<CodeHighlighterProps> = ({
+  code,
+  language = "tsx",
+  className = "",
+}) => {
+  const { theme: systemTheme, resolvedTheme } = useTheme()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [highlighter, setHighlighter] = useState<any | null>(null)
+  const [highlightedCode, setHighlightedCode] = useState<string>("")
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Determine the appropriate Shiki theme based on the current theme
+  const getShikiTheme = useCallback(() => {
+    const currentTheme = resolvedTheme || systemTheme
+    return currentTheme === "dark" ? "github-dark" : "github-light"
+  }, [resolvedTheme, systemTheme])
+
+  useEffect(() => {
+    const initHighlighter = async () => {
+      try {
+        const shiki = await getHighlighter()
+        if (shiki) {
+          setHighlighter(shiki)
+        }
+        setIsLoading(false)
+      } catch (error) {
+        console.error("Failed to load highlighter:", error)
+        setIsLoading(false)
       }
     }
 
@@ -61,7 +83,8 @@ export const CodeHighlighter: React.FC<CodeHighlighterProps> = ({
           transformers: [
             {
               name: "remove-pre-background",
-              pre(node) {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              pre(node: any) {
                 // Remove background from pre tag to use our own styling
                 if (node.properties.style) {
                   node.properties.style = (
@@ -73,16 +96,15 @@ export const CodeHighlighter: React.FC<CodeHighlighterProps> = ({
           ],
         })
         setHighlightedCode(highlighted)
-      } catch {
-        // Code highlighting errors disabled for production
-        // console.error("Failed to highlight code:", error)
+      } catch (error) {
+        console.error("Failed to highlight code:", error)
         // Fallback to plain text
         setHighlightedCode(`<pre><code>${code}</code></pre>`)
       }
     }
   }, [highlighter, code, language, getShikiTheme])
 
-  if (!highlightedCode) {
+  if (isLoading || !highlightedCode) {
     // Loading state with skeleton
     return (
       <div className={`w-full h-full p-4 bg-background ${className}`}>
