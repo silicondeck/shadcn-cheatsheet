@@ -180,14 +180,9 @@ export function CompactShowcaseBanner() {
       className="block group"
       aria-label="Explore Free & Premium Shadcn Blocks and Templates"
     >
-      <div className="relative rounded-xl border border-primary/20 bg-gradient-to-br from-background via-background/95 to-primary/5 hover:border-primary/40 hover:shadow-xl transition-all duration-300 h-[200px] overflow-hidden">
+      <div className="relative rounded-xl border border-primary/20 bg-gradient-to-br from-background via-background/95 to-primary/5 hover:shadow-md transition-all duration-300 h-[200px] overflow-hidden">
         {/* Animated background gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 opacity-50" />
-
-        {/* Background grid pattern */}
-        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05] pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#000_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_1px_1px,#fff_1px,transparent_1px)] [background-size:30px_30px]" />
-        </div>
 
         <div className="relative h-full">
           <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-0 h-full items-stretch">
@@ -208,32 +203,28 @@ export function CompactShowcaseBanner() {
 
               {/* CTA Button - Left Aligned */}
               <div className="text-left">
-                <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-bold text-sm group-hover:bg-primary/90 group-hover:scale-105 group-hover:shadow-lg transition-all duration-300 shadow-md">
+                <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-bold text-sm shadow-md">
                   <Blocks className="h-4 w-4" />
                   <span>Explore Now</span>
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 duration-300 transition-transform" />
+                  <ArrowRight className="h-4 w-4" />
                 </div>
               </div>
             </div>
 
             {/* RIGHT SIDE: Single Preview Image - Full Height No Padding */}
             <div className="relative hidden lg:block h-full">
-              <div className="h-full w-full  group-hover:shadow-lg transition-all top-22 -right-20 absolute scale-y-250 scale-x-175 rotate-25">
+              <div className="h-full w-full top-22 -right-20 absolute scale-y-250 scale-x-175 rotate-25">
                 <Image
                   src="/images/banner-image.png"
                   alt="Shadcn Blocks Preview"
                   fill
+                  priority
+                  sizes="(min-width: 1024px) 50vw, 0vw"
                 />
               </div>
-
-              {/* Floating accent element with pulse glow */}
-              <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary/20 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-300 pointer-events-none" />
             </div>
           </div>
         </div>
-
-        {/* Animated gradient overlay on hover */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
     </Link>
   )
