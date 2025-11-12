@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useCallback, useState } from "react"
+import { useRouter } from "next/navigation"
 import {
   Code,
   Copy,
@@ -13,6 +14,7 @@ import { toast } from "sonner"
 
 import { ComponentData } from "@/types/components"
 import { ComponentVariant, ViewMode } from "@/types/core"
+import { extractVariantSlug } from "@/lib/seo-metadata"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -78,10 +80,20 @@ export const ComponentCard: React.FC<ComponentCardProps> = React.memo(({
   packageManager = "pnpm",
   className = "",
 }) => {
+  const router = useRouter()
   const [copiedItem, setCopiedItem] = useState<string | null>(null)
   const [variantSourceCodes, setVariantSourceCodes] = useState<
     Record<string, string>
   >({})
+
+  // Prefetch component route on hover for faster navigation
+  const handleVariantHoverStart = useCallback(
+    (variant: ComponentVariant) => {
+      const variantSlug = extractVariantSlug(variant.id, component.id)
+      router.prefetch(`/component/${component.id}/${variantSlug}`)
+    },
+    [router, component.id]
+  )
 
   // Generate install command based on package manager
   const getInstallCommand = useCallback(
@@ -162,7 +174,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = React.memo(({
   // Memoize install command
   const installCommand = React.useMemo(
     () => getInstallCommand(component),
-    [component, packageManager, getInstallCommand]
+    [component, getInstallCommand]
   )
 
   return (
@@ -328,6 +340,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = React.memo(({
                           <div
                             key={variant.id}
                             className="px-3 py-2 bg-muted rounded-md cursor-pointer hover:bg-muted/80 transition-colors"
+                            onMouseEnter={() => handleVariantHoverStart(variant)}
                             onClick={(e) => {
                               e.stopPropagation()
                               if (onPreview) {

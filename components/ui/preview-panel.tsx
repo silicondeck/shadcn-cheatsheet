@@ -108,7 +108,7 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
 
   return (
     <TooltipProvider>
-      <Sheet open={isOpen} onOpenChange={onClose}>
+      <Sheet key={component?.id} open={isOpen} onOpenChange={onClose}>
         <SheetContent
           side="right"
           className="w-[85%] max-w-none p-0 [&>button]:hidden gap-0 md:w-[75%] sm:max-w-none h-screen flex flex-col"
@@ -152,11 +152,11 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
 
               {/* Right side actions */}
               <div className="flex items-center gap-1 sm:gap-2">
-                <Button size="sm" onClick={() => window.open('https://shadcnstore.com/blocks', '_self')} className="cursor-pointer !px-4.5">
+                <Button size="sm" onClick={() => window.open('https://shadcnstore.com/blocks', '_blank')} className="cursor-pointer !px-4.5">
                   <Blocks className="w-4 h-4" />
                   Blocks
                 </Button>
-                <Button size="sm" onClick={() => window.open('https://shadcnstore.com/templates', '_self')} className="cursor-pointer !px-4.5">
+                <Button size="sm" onClick={() => window.open('https://shadcnstore.com/templates', '_blank')} className="cursor-pointer !px-4.5">
                   <LayoutTemplate className="w-4 h-4" />
                   Templates
                 </Button>

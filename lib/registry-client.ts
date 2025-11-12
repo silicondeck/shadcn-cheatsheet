@@ -8,6 +8,12 @@ import { ComponentType } from "react"
 import { registry, type RegistryItem } from "./registry"
 
 /**
+ * Cache for loaded components to avoid re-loading
+ * Key: component name, Value: ComponentType
+ */
+const loadedComponentsCache = new Map<string, ComponentType>()
+
+/**
  * Dynamic component loader for live previews (client-side only)
  * Maps registry names to dynamic imports
  */
@@ -428,10 +434,17 @@ export function hasRegistryComponent(name: string): boolean {
 
 /**
  * Load a component dynamically for live preview (client-side only)
+ * Results are cached to avoid re-loading the same component
  */
 export async function loadRegistryComponent(
   name: string
 ): Promise<ComponentType> {
+  // Check cache first
+  const cached = loadedComponentsCache.get(name)
+  if (cached) {
+    return cached
+  }
+
   const loader = registryComponents[name]
   if (!loader) {
     throw new Error(`Component ${name} not found in registry`)
@@ -439,8 +452,13 @@ export async function loadRegistryComponent(
 
   try {
     const componentModule = await loader()
-    return (componentModule.default ||
+    const component = (componentModule.default ||
       componentModule[Object.keys(componentModule)[0]]) as ComponentType
+    
+    // Store in cache
+    loadedComponentsCache.set(name, component)
+    
+    return component
   } catch (error) {
     // Component loading errors disabled for production
     // console.error(`Error loading component ${name}:`, error)

@@ -77,29 +77,45 @@ function createSearchComponents(): ComponentDefinition[] {
 // Initialize search components at module level
 const SEARCH_COMPONENTS = createSearchComponents()
 
-// Convert ComponentDefinition to ComponentData format
-const convertToComponentData = (comp: ComponentDefinition): ComponentData => ({
-  id: comp.id,
-  name: comp.name,
-  description: comp.description,
-  category: comp.category,
-  tags: comp.tags || [comp.category], // Use category as fallback tag
-  version: "1.0.0",
-  lastUpdated: "2024-01-15",
-  dependencies: COMPONENT_DEPENDENCIES[comp.id] || [], // Use our dependencies mapping
-  docsUrl: comp.documentation.officialDocs || comp.documentation.url, // Use officialDocs first, then fallback to url
-  examples: comp.variants.map((variant) => ({
-    title: variant.name,
-    description: variant.description,
-    code: variant.code,
-    language: "tsx",
-  })),
-  variants: comp.variants.map((v) => v.name),
-  complexity: "beginner" as const,
-  featured: false,
-  // Add the original component data for full variant access
-  _originalComponent: comp,
-})
+// Cache for converted ComponentData to avoid repeated conversions
+const componentDataCache = new Map<string, ComponentData>()
+
+// Convert ComponentDefinition to ComponentData format with caching
+const convertToComponentData = (comp: ComponentDefinition): ComponentData => {
+  // Check cache first
+  const cached = componentDataCache.get(comp.id)
+  if (cached) {
+    return cached
+  }
+
+  const componentData: ComponentData = {
+    id: comp.id,
+    name: comp.name,
+    description: comp.description,
+    category: comp.category,
+    tags: comp.tags || [comp.category], // Use category as fallback tag
+    version: "1.0.0",
+    lastUpdated: "2024-01-15",
+    dependencies: COMPONENT_DEPENDENCIES[comp.id] || [], // Use our dependencies mapping
+    docsUrl: comp.documentation.officialDocs || comp.documentation.url, // Use officialDocs first, then fallback to url
+    examples: comp.variants.map((variant) => ({
+      title: variant.name,
+      description: variant.description,
+      code: variant.code,
+      language: "tsx",
+    })),
+    variants: comp.variants.map((v) => v.name),
+    complexity: "beginner" as const,
+    featured: false,
+    // Add the original component data for full variant access
+    _originalComponent: comp,
+  }
+
+  // Cache the result
+  componentDataCache.set(comp.id, componentData)
+
+  return componentData
+}
 
 function HomePageFallback() {
   return (
@@ -154,11 +170,16 @@ function HomeContent() {
     ComponentVariant | undefined
   >(undefined)
 
+  // Memoize component data list conversion to avoid recalculation
+  const componentDataList = React.useMemo(
+    () => searchResults.map(convertToComponentData),
+    [searchResults]
+  )
+
   // Initialize navigation manager with current search results
   const initializeNavigation = useCallback(() => {
-    const componentDataList = searchResults.map(convertToComponentData)
     navigationManager.updateComponents(componentDataList)
-  }, [searchResults, navigationManager])
+  }, [componentDataList, navigationManager])
 
   // Initialize navigation when search results change
   React.useEffect(() => {

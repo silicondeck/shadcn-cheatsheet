@@ -77,27 +77,43 @@ function createSearchComponents(): ComponentDefinition[] {
 // Create components once at module level to prevent memory leaks
 const SEARCH_COMPONENTS = createSearchComponents()
 
-const convertToComponentData = (comp: ComponentDefinition): ComponentData => ({
-  id: comp.id,
-  name: comp.name,
-  description: comp.description,
-  category: comp.category,
-  tags: comp.tags || [comp.category],
-  version: "1.0.0",
-  lastUpdated: "2024-01-15",
-  dependencies: COMPONENT_DEPENDENCIES[comp.id] || [],
-  docsUrl: comp.documentation.officialDocs || comp.documentation.url,
-  examples: comp.variants.map((variant) => ({
-    title: variant.name,
-    description: variant.description,
-    code: variant.code,
-    language: "tsx",
-  })),
-  variants: comp.variants.map((v) => v.name),
-  complexity: "beginner" as const,
-  featured: false,
-  _originalComponent: comp,
-})
+// Cache for converted ComponentData to avoid repeated conversions
+const componentDataCache = new Map<string, ComponentData>()
+
+const convertToComponentData = (comp: ComponentDefinition): ComponentData => {
+  // Check cache first
+  const cached = componentDataCache.get(comp.id)
+  if (cached) {
+    return cached
+  }
+
+  const componentData: ComponentData = {
+    id: comp.id,
+    name: comp.name,
+    description: comp.description,
+    category: comp.category,
+    tags: comp.tags || [comp.category],
+    version: "1.0.0",
+    lastUpdated: "2024-01-15",
+    dependencies: COMPONENT_DEPENDENCIES[comp.id] || [],
+    docsUrl: comp.documentation.officialDocs || comp.documentation.url,
+    examples: comp.variants.map((variant) => ({
+      title: variant.name,
+      description: variant.description,
+      code: variant.code,
+      language: "tsx",
+    })),
+    variants: comp.variants.map((v) => v.name),
+    complexity: "beginner" as const,
+    featured: false,
+    _originalComponent: comp,
+  }
+
+  // Cache the result
+  componentDataCache.set(comp.id, componentData)
+
+  return componentData
+}
 
 export default function ComponentPageClient({
   componentId,
@@ -153,11 +169,20 @@ export default function ComponentPageClient({
     return isDefaultVariant(componentInfo, example, variantId)
   }, [componentInfo, currentVariant, variantId])
 
-  // Initialize navigation - only update when necessary
+  // Initialize navigation - split into two effects for better performance
+  // 1. Update components list only once (memoized)
+  const componentDataList = React.useMemo(
+    () => SEARCH_COMPONENTS.map(convertToComponentData),
+    [] // Empty deps - only compute once since SEARCH_COMPONENTS is static
+  )
+
   React.useEffect(() => {
-    if (componentData) {
-      const componentDataList = SEARCH_COMPONENTS.map(convertToComponentData)
-      navigationManager.updateComponents(componentDataList)
+    navigationManager.updateComponents(componentDataList)
+  }, [navigationManager, componentDataList])
+
+  // 2. Initialize navigation state when component or variant changes
+  React.useEffect(() => {
+    if (componentData && currentVariant) {
       navigationManager.initializeNavigation(componentData, currentVariant)
     }
   }, [componentData, currentVariant, navigationManager])

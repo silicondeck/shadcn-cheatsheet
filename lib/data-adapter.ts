@@ -103,10 +103,17 @@ export const COMPONENT_DEPENDENCIES: Record<string, string[]> = {
 }
 
 /**
+ * Cache for converted ComponentDefinition to avoid repeated conversions
+ * Key: component ID, Value: ComponentDefinition
+ */
+const componentDefinitionCache = new Map<string, ComponentDefinition>()
+
+/**
  * Convert ComponentInfo to ComponentDefinition for search engine
  *
  * Transforms simple component metadata into a comprehensive definition
  * suitable for the search engine and component display system.
+ * Results are cached to improve performance on repeated conversions.
  *
  * @param comp - The source component information from components-simple.ts
  * @returns ComponentDefinition with enriched data including dependencies and variants
@@ -114,9 +121,15 @@ export const COMPONENT_DEPENDENCIES: Record<string, string[]> = {
 export function convertToComponentDefinition(
   comp: ComponentInfo
 ): ComponentDefinition {
+  // Check cache first
+  const cached = componentDefinitionCache.get(comp.id)
+  if (cached) {
+    return cached
+  }
+
   const dependencies = COMPONENT_DEPENDENCIES[comp.id] || []
 
-  return {
+  const componentDefinition: ComponentDefinition = {
     id: comp.id,
     name: comp.name,
     description: comp.description,
@@ -147,21 +160,39 @@ export function convertToComponentDefinition(
     aliases: [],
     tags: [],
   }
+
+  // Cache the result
+  componentDefinitionCache.set(comp.id, componentDefinition)
+
+  return componentDefinition
 }
+
+/**
+ * Cache for converted ComponentData to avoid repeated conversions
+ * Key: component ID, Value: ComponentData
+ */
+const componentDataCache = new Map<string, ComponentData>()
 
 /**
  * Convert ComponentInfo to ComponentData for UI components
  *
  * Transforms component metadata into the format expected by UI components
  * such as ComponentCard. Includes dependency resolution and example formatting.
+ * Results are cached to improve performance on repeated conversions.
  *
  * @param comp - The source component information
  * @returns ComponentData formatted for UI consumption
  */
 export function convertToComponentData(comp: ComponentInfo): ComponentData {
+  // Check cache first
+  const cached = componentDataCache.get(comp.id)
+  if (cached) {
+    return cached
+  }
+
   const dependencies = COMPONENT_DEPENDENCIES[comp.id] || []
 
-  return {
+  const componentData: ComponentData = {
     id: comp.id,
     name: comp.name,
     description: comp.description,
@@ -172,6 +203,11 @@ export function convertToComponentData(comp: ComponentInfo): ComponentData {
     // Add original component for variant access
     _originalComponent: convertToComponentDefinition(comp),
   }
+
+  // Cache the result
+  componentDataCache.set(comp.id, componentData)
+
+  return componentData
 }
 
 /**

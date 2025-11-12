@@ -36,7 +36,8 @@ function SheetOverlay({
     <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
       className={cn(
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-foreground/50",
+        "fixed inset-0 z-50 bg-foreground/50 transition-opacity duration-150",
+        "data-[state=closed]:opacity-0",
         className
       )}
       {...props}
@@ -64,7 +65,7 @@ function SheetContent({
         }}
         className={cn(
           "bg-background fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out",
-          // Only animate on close, not on open (to prevent re-animation on content changes)
+          // Removed open animation to prevent flicker on content changes
           "data-[state=closed]:animate-out data-[state=closed]:duration-300",
           side === "right" &&
             "data-[state=closed]:slide-out-to-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",
