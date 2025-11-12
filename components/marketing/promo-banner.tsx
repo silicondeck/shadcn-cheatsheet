@@ -2,9 +2,132 @@
 
 import React from "react"
 import Link from "next/link"
-import { ArrowRight, Sparkles, Zap, Package } from "lucide-react"
+import Image from "next/image"
+import { ArrowRight, Sparkles, Zap, Package, Blocks, Star } from "lucide-react"
 
-// Variation 1: Horizontal Strip Banner (Single Row)
+// Variation 1: Full-Featured Showcase Banner (Primary - Like the image provided)
+export function OptimizedShowcaseBanner() {
+  return (
+    <Link
+      href="https://shadcnstore.com/blocks"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block group"
+      aria-label="Explore Free & Premium Shadcn Blocks and Templates"
+    >
+      <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-background via-background/95 to-primary/5 hover:border-primary/40 hover:shadow-xl transition-all duration-300">
+        {/* Background grid pattern */}
+        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05] pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#000_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_1px_1px,#fff_1px,transparent_1px)] [background-size:40px_40px]" />
+        </div>
+
+        <div className="relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch">
+            {/* LEFT SIDE: Content - All Left Aligned */}
+            <div className="flex flex-col space-y-6 px-6 sm:px-8 py-8 sm:py-10 lg:py-12">
+              {/* Main Heading with Free & Premium Highlight */}
+              <div className="space-y-3 text-left">
+                <h2 className="text-4xl sm:text-5xl font-bold leading-tight text-foreground text-left">
+                  Optimized Shadcn blocks
+                  <br />
+                  <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
+                    built for scale
+                  </span>
+                </h2>
+                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl text-left">
+                  Supercharge your workflow with 165+ responsive, production-ready Shadcn UI blocks for any modern web project. Built for speed, flexibility, and clarity—so you can focus on what matters most.
+                </p>
+              </div>
+
+              {/* Free vs Premium Comparison */}
+              <div className="grid grid-cols-2 gap-4 py-2 text-left">
+                {/* Free Column */}
+                <div className="space-y-3 text-left">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center">
+                      <Zap className="h-3.5 w-3.5 text-green-600 dark:text-green-400" />
+                    </div>
+                    <h4 className="font-semibold text-foreground text-left">Free Components</h4>
+                  </div>
+                  <ul className="space-y-2 text-sm text-muted-foreground text-left">
+                    <li className="flex items-start gap-2 text-left">
+                      <span className="text-green-600 dark:text-green-400 font-bold mt-0.5">✓</span>
+                      <span className="text-left">50+ Pre-built Blocks</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-left">
+                      <span className="text-green-600 dark:text-green-400 font-bold mt-0.5">✓</span>
+                      <span className="text-left">Fully Customizable</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-left">
+                      <span className="text-green-600 dark:text-green-400 font-bold mt-0.5">✓</span>
+                      <span className="text-left">Copy & Paste Ready</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Premium Column */}
+                <div className="space-y-3 text-left">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                      <Star className="h-3.5 w-3.5 text-primary" />
+                    </div>
+                    <h4 className="font-semibold text-foreground text-left">Premium Templates</h4>
+                  </div>
+                  <ul className="space-y-2 text-sm text-muted-foreground text-left">
+                    <li className="flex items-start gap-2 text-left">
+                      <span className="text-primary font-bold mt-0.5">✓</span>
+                      <span className="text-left">Full-Page Templates</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-left">
+                      <span className="text-primary font-bold mt-0.5">✓</span>
+                      <span className="text-left">Advanced Animations</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-left">
+                      <span className="text-primary font-bold mt-0.5">✓</span>
+                      <span className="text-left">Priority Updates</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* CTA Button - Left Aligned */}
+              <div className="pt-4 text-left">
+                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-bold text-base group-hover:bg-primary/90 group-hover:scale-105 group-hover:shadow-lg transition-all shadow-md">
+                  <Blocks className="h-5 w-5" />
+                  <span>Explore Blocks</span>
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT SIDE: Single Preview Image - Full Height No Padding */}
+            <div className="relative hidden lg:block h-full min-h-[400px]">
+              {/* Single showcase image placeholder - takes full height with rounded corner only on right */}
+              <div className="w-full h-full border-l border-primary/10 overflow-hidden group-hover:shadow-lg transition-all rounded-r-2xl">
+                <Image
+                  src="/image/blocks-image.png"
+                  alt="Shadcn Blocks Preview"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 0vw, 50vw"
+                  priority
+                />
+              </div>
+
+              {/* Floating accent element */}
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none" />
+            </div>
+          </div>
+        </div>
+
+        {/* Animated gradient overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      </div>
+    </Link>
+  )
+}
+
+// Variation 2: Horizontal Strip Banner (Single Row)
 export function HorizontalStripBanner() {
   return (
     <Link
@@ -47,7 +170,76 @@ export function HorizontalStripBanner() {
   )
 }
 
-// Variation 2: Compact Card Banner (Two Columns)
+// Variation 2.5: Compact Showcase Banner (200px height with images)
+export function CompactShowcaseBanner() {
+  return (
+    <Link
+      href="https://shadcnstore.com/blocks"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block group"
+      aria-label="Explore Free & Premium Shadcn Blocks and Templates"
+    >
+      <div className="relative rounded-xl border border-primary/20 bg-gradient-to-br from-background via-background/95 to-primary/5 hover:border-primary/40 hover:shadow-xl transition-all duration-300 h-[200px] overflow-hidden">
+        {/* Animated background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 opacity-50" />
+
+        {/* Background grid pattern */}
+        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05] pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#000_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_1px_1px,#fff_1px,transparent_1px)] [background-size:30px_30px]" />
+        </div>
+
+        <div className="relative h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-0 h-full items-stretch">
+            {/* LEFT SIDE: Content - All Left Aligned */}
+            <div className="flex flex-col justify-center space-y-4 px-6 sm:px-8 py-6 text-left">
+              {/* Main Heading */}
+              <div className="space-y-2 text-left">
+                <h2 className="text-2xl sm:text-3xl font-bold leading-tight text-foreground text-left">
+                  <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
+                    165+ Shadcn Blocks
+                  </span>
+                  {" "}Ready to Use
+                </h2>
+                <p className="text-sm text-muted-foreground leading-relaxed text-left">
+                  Production-ready components and templates to ship faster
+                </p>
+              </div>
+
+              {/* CTA Button - Left Aligned */}
+              <div className="text-left">
+                <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-bold text-sm group-hover:bg-primary/90 group-hover:scale-105 group-hover:shadow-lg transition-all duration-300 shadow-md">
+                  <Blocks className="h-4 w-4" />
+                  <span>Explore Now</span>
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 duration-300 transition-transform" />
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT SIDE: Single Preview Image - Full Height No Padding */}
+            <div className="relative hidden lg:block h-full">
+              <div className="h-full w-full  group-hover:shadow-lg transition-all top-22 -right-20 absolute scale-y-250 scale-x-175 rotate-25">
+                <Image
+                  src="/images/banner-image.png"
+                  alt="Shadcn Blocks Preview"
+                  fill
+                />
+              </div>
+
+              {/* Floating accent element with pulse glow */}
+              <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary/20 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-300 pointer-events-none" />
+            </div>
+          </div>
+        </div>
+
+        {/* Animated gradient overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      </div>
+    </Link>
+  )
+}
+
+// Variation 3: Compact Card Banner
 export function CompactCardBanner() {
   return (
     <Link
@@ -69,11 +261,8 @@ export function CompactCardBanner() {
                 <Package className="h-7 w-7 text-primary" />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="font-bold text-lg text-foreground mb-1 flex items-center gap-2 flex-wrap">
+                <h3 className="font-bold text-lg text-foreground mb-1">
                   Build Faster with Shadcn Blocks
-                  <span className="inline-flex items-center rounded-full bg-green-500/10 border border-green-500/20 px-2.5 py-0.5 text-xs font-semibold text-green-600 dark:text-green-400">
-                    Free & Premium
-                  </span>
                 </h3>
                 <p className="text-sm text-muted-foreground mb-2.5 line-clamp-1 font-medium">
                   Production-ready Shadcn UI components and templates
@@ -105,7 +294,7 @@ export function CompactCardBanner() {
   )
 }
 
-// Variation 3: Notification Style Banner (Minimal)
+// Variation 4: Notification Style Banner (Minimal)
 export function NotificationBanner() {
   return (
     <Link
@@ -161,7 +350,7 @@ export function NotificationBanner() {
   )
 }
 
-// Variation 4: Featured Showcase Banner (Slightly Taller - 100px)
+// Variation 5: Featured Showcase Banner
 export function FeaturedShowcaseBanner() {
   return (
     <Link
@@ -185,14 +374,9 @@ export function FeaturedShowcaseBanner() {
                 <Package className="h-8 w-8 text-primary" />
               </div>
               <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                  <h3 className="font-bold text-xl text-foreground">
-                    Ready-to-Use Shadcn Blocks
-                  </h3>
-                  <span className="inline-flex items-center rounded-full bg-gradient-to-r from-green-500/20 to-primary/20 border border-green-500/30 px-2.5 py-0.5 text-xs font-bold text-foreground">
-                    Free & Premium
-                  </span>
-                </div>
+                <h3 className="font-bold text-xl text-foreground mb-1.5">
+                  Ready-to-Use Shadcn Blocks
+                </h3>
                 <p className="text-sm text-muted-foreground mb-3 font-medium">
                   Professional templates and components to ship products faster
                 </p>
@@ -230,12 +414,14 @@ export function FeaturedShowcaseBanner() {
 
 // Default export - Choose your preferred variation
 export default function PromoBanner({
-  variant = "horizontal"
+  variant = "optimized"
 }: {
-  variant?: "horizontal" | "compact" | "notification" | "featured"
+  variant?: "optimized" | "horizontal" | "compact-showcase" | "compact" | "notification" | "featured"
 }) {
   const bannerVariants = {
+    optimized: OptimizedShowcaseBanner,
     horizontal: HorizontalStripBanner,
+    "compact-showcase": CompactShowcaseBanner,
     compact: CompactCardBanner,
     notification: NotificationBanner,
     featured: FeaturedShowcaseBanner,

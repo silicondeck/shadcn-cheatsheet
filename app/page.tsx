@@ -450,8 +450,8 @@ function HomeContent() {
                   </div>
 
                   {/* Promo Banner */}
-                  <div className="max-w-4xl mx-auto mb-8">
-                    <PromoBanner variant="notification" />
+                  <div className="max-w-5xl mx-auto mb-8">
+                    <PromoBanner variant="compact-showcase" />
                   </div>
                 </div>
               </div>
