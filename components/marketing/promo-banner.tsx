@@ -4,6 +4,7 @@ import React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Sparkles, Zap, Package, Blocks, Star } from "lucide-react"
+import bannerImage from "@/public/images/banner-image.png"
 
 // Variation 1: Full-Featured Showcase Banner (Primary - Like the image provided)
 export function OptimizedShowcaseBanner() {
@@ -215,7 +216,7 @@ export function CompactShowcaseBanner() {
             <div className="relative hidden lg:block h-full">
               <div className="h-full w-full top-22 -right-20 absolute scale-y-250 scale-x-175 rotate-25">
                 <Image
-                  src="/images/banner-image.png"
+                  src={bannerImage}
                   alt="Shadcn Blocks Preview"
                   fill
                   priority
