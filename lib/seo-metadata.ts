@@ -213,7 +213,7 @@ export function generateComponentMetadata(
     selectedVariant?.name,
     isDefault
   )
-  const variantSlug = variantId ? extractVariantSlug(variantId) : undefined
+  const variantSlug = variantId ? extractVariantSlug(variantId, componentId) : undefined
   const canonicalUrl = buildCanonicalUrl(componentId, variantSlug)
   const ogImageAlt = buildOgImageAlt(component.name, selectedVariant?.name)
 
