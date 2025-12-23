@@ -150,14 +150,15 @@ export function buildKeywords(
 
 /**
  * Build canonical URL
+ * Includes trailing slash to match Next.js routing behavior
  */
 export function buildCanonicalUrl(
   componentId: string,
   variantSlug?: string
 ): string {
   return variantSlug
-    ? `${SEO_CONSTANTS.baseUrl}/component/${componentId}/${variantSlug}`
-    : `${SEO_CONSTANTS.baseUrl}/component/${componentId}`
+    ? `${SEO_CONSTANTS.baseUrl}/component/${componentId}/${variantSlug}/`
+    : `${SEO_CONSTANTS.baseUrl}/component/${componentId}/`
 }
 
 /**
